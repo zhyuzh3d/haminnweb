@@ -1,0 +1,13 @@
+{
+  "order": 2,
+  "repository": "https://github.com/zhyuzh3d/hamdraw",
+  "website": "https://hamdraw.airen.life/",
+  "tagline": {
+    "zh": "随手涂鸦，实时成图。",
+    "en": "Doodle freely. Watch it become a picture."
+  },
+  "description": {
+    "zh": "HamDraw 是第一款真正实时的 AI 绘图 happ。你在画布上随手涂几笔，成图层就跟着变成一张完整的图；再用「局部」涂红一块、写下这块要改成什么，就只改这一块。提示词和等待式的图生图都不够用——人需要的是一边说、一边画、一边看见。三个任务槽位各自配模型：快速生图、局部重绘、高清渲染；推荐在本机 ComfyUI 装官方插件（CVP，密码在插件配置节点里设置），也可以接云端服务。",
+    "en": "HamDraw is the first genuinely real-time AI drawing happ. Scribble a few strokes and the result layer turns them into a finished picture; paint a region with Mask, describe what it should become, and only that region changes. Prompts alone are not enough, and waiting for image-to-image is not enough either: you need to talk, draw and see at the same time. Three task slots take their own models — quick draw, local redraw and render — best served by the official plugin (CVP) on your own ComfyUI, where the password lives in the plugin's config node."
+  }
+}

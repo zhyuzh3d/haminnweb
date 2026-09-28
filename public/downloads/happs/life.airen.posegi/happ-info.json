@@ -1,0 +1,13 @@
+{
+  "order": 3,
+  "repository": "https://github.com/zhyuzh3d/PoseGi",
+  "website": "https://posegi.airen.life/",
+  "tagline": {
+    "zh": "先把姿势摆对,再让 AI 画。",
+    "en": "Pose it right first, then let the AI draw."
+  },
+  "description": {
+    "zh": "PoseGi 是一个装进 Haminn 的 3D 摆姿应用:在手机上拖动一根人形骨架摆出造型,再让 AI 照着画出来。骨架有 20 多个解剖学关节,每个关节只在自己的可转范围内活动;自己手写的 IK 会把你的拖动顺着骨链传下去,所以拖手拖脚的时候整条链跟着走。摆好之后手机现场渲染一张 1024 边的参考图,连同你写的画面描述交给模型卡 —— 本地 ComfyUI 插件,OpenAI Images 兼容接口,SD WebUI 或者 Stability AI 都能接。角色,姿态和生图配置全部留在本机,不内置任何平台密钥。",
+    "en": "PoseGi is a 3D posing happ for Haminn: drag a humanoid skeleton on your phone and let the AI draw from it. The rig carries more than twenty anatomical joints, each moving only inside its own range, and a hand-written IK carries your drag down the bone chain so the whole limb follows. When the pose is right the phone renders a 1024-edge reference on the spot and hands it to a model card along with your description — a local ComfyUI plugin, an OpenAI Images compatible endpoint, SD WebUI or Stability AI all connect. Figures, poses and generation settings stay on this phone, and no platform key is bundled."
+  }
+}

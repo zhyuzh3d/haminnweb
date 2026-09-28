@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="zh-CN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark"><meta name="description" content="PoseGi 是 Haminn 里的 3D 摆姿工作台：在手机上拖动 20+ 个解剖学关节摆出造型,现场渲染参考图,再交给本地或云端的生图模型。">
+<title>PoseGi · 摆好姿势,再让 AI 画</title>
+<link rel="icon" href="/assets/site/posegi-icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/site/posegi-icon-192.png">
+<script>window.HAMINN_SITE_META = {"/": {zh: ["PoseGi · 摆好姿势,再让 AI 画", "在手机上拖动 3D 人形骨骼摆出造型,现场渲染参考图,交给本地或云端的生图模型。"], en: ["PoseGi · Pose it, then let the AI draw", "Drag a 3D humanoid skeleton on your phone, render the reference on the spot, and hand it to a local or cloud image model."]}};</script>
+<script src="/assets/site/site.js?v=20260926c"></script>
+<link rel="stylesheet" href="/assets/vendor/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="/assets/site/site.css?v=20260926c">
+<link rel="stylesheet" href="styles.css?v=20260926c">
+</head><body>
+<a class="skip" href="#main">跳到主要内容</a>
+<header class="site-header">
+<a class="brand" href="/" aria-label="PoseGi 首页"><span class="brand-mark app-mark"><img src="/assets/site/posegi.webp" alt="" width="38" height="38"></span>PoseGi</a>
+<nav aria-label="网站导航"><a href="#pose">摆姿</a><a href="#tools">界面按钮</a><a href="#models">模型接入</a><a href="#install">上手</a><a href="https://haminn.airen.life/pages/happs.html">应用广场</a></nav>
+<div class="header-tools"><a class="button small" href="#install">安装 PoseGi <i class="fa-solid fa-download" aria-hidden="true"></i></a><a class="github-link" href="https://github.com/zhyuzh3d/PoseGi" aria-label="GitHub 仓库" title="GitHub 仓库"><i class="fa-brands fa-github" aria-hidden="true"></i></a><div class="language-switch" id="siteLanguage" role="group" aria-label="选择语言"><button type="button" data-language-choice="zh" aria-pressed="false">中</button><button type="button" data-language-choice="en" aria-pressed="false">En</button></div><div class="theme-switch" id="siteTheme" role="group" aria-label="选择明暗主题"><button type="button" data-theme-choice="dark" aria-pressed="false" aria-label="深色主题"><i class="fa-regular fa-moon" aria-hidden="true"></i></button><button type="button" data-theme-choice="system" aria-pressed="true" aria-label="跟随系统">Auto</button><button type="button" data-theme-choice="light" aria-pressed="false" aria-label="浅色主题"><i class="fa-regular fa-sun" aria-hidden="true"></i></button></div></div>
+</header>
+<main id="main">
+
+<section class="app-hero wrap">
+<div>
+<p class="eyebrow"><span class="lang-zh">Haminn 里的 3D 摆姿工作台</span><span class="lang-en">A 3D posing bench inside Haminn</span></p>
+<h1><span class="lang-zh">先把姿势摆对,<br><span class="accent">再让 AI 画。</span></span><span class="lang-en">Pose it right first.<br><span class="accent">Then let the AI draw.</span></span></h1>
+<ul class="hero-points">
+<li><span class="lang-zh">20+ 个解剖学关节,每个都带自己的可转范围</span><span class="lang-en">More than twenty anatomical joints, each with its own range</span></li>
+<li><span class="lang-zh">自己手写的 IK:拖手拖脚,整条链跟着走</span><span class="lang-en">Hand-written IK: drag a hand or a foot and the whole chain follows</span></li>
+<li><span class="lang-zh">参考图现场渲染,不存姿态也能直接生成</span><span class="lang-en">The reference renders on the spot, so nothing has to be saved first</span></li>
+</ul>
+<div class="button-row">
+<a class="button app-button" href="#install"><span class="lang-zh">安装 PoseGi</span><span class="lang-en">Install PoseGi</span> <i class="fa-solid fa-qrcode" aria-hidden="true"></i></a>
+<a class="button secondary" href="#pose"><span class="lang-zh">看它怎么摆</span><span class="lang-en">See how posing works</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+</div>
+<p class="fine"><span class="lang-zh">需要 Android 10 及以上手机,并先安装 <a href="https://haminn.airen.life/pages/download.html">Haminn</a>。参考图由手机现场渲染,生图模型可以由你自己的电脑或云端服务提供。</span><span class="lang-en">Needs Android 10 or later plus <a href="https://haminn.airen.life/pages/download.html">Haminn</a>. The phone renders the reference itself, and the image model can come from your own computer or a cloud service.</span></p>
+</div>
+
+<div class="studio" aria-hidden="true">
+<div class="studio-bar"><span class="studio-dot"></span><span>PoseGi</span><span>3D <span class="lang-zh">视口</span><span class="lang-en">viewport</span></span><span class="studio-live"><i class="fa-solid fa-hand-pointer"></i> <span class="lang-zh">右手已选中</span><span class="lang-en">Right hand picked</span></span></div>
+<div class="studio-stage">
+<svg viewBox="0 0 320 250" role="presentation" focusable="false">
+<g class="grid-floor">
+<line x1="10" y1="228" x2="310" y2="228"></line>
+<line x1="30" y1="242" x2="290" y2="242"></line>
+<line x1="160" y1="196" x2="10" y2="248"></line>
+<line x1="160" y1="196" x2="310" y2="248"></line>
+</g>
+<g>
+<line class="bone" x1="160" y1="124" x2="160" y2="90"></line>
+<line class="bone" x1="160" y1="90" x2="160" y2="62"></line>
+<line class="bone" x1="160" y1="90" x2="130" y2="88"></line>
+<line class="bone" x1="160" y1="90" x2="190" y2="88"></line>
+<line class="bone dimmed" x1="130" y1="88" x2="114" y2="124"></line>
+<line class="bone dimmed" x1="114" y1="124" x2="104" y2="158"></line>
+<line class="bone" x1="190" y1="88" x2="212" y2="116"></line>
+<line class="bone" x1="212" y1="116" x2="232" y2="140"></line>
+<line class="bone" x1="160" y1="124" x2="146" y2="126"></line>
+<line class="bone" x1="146" y1="126" x2="140" y2="170"></line>
+<line class="bone" x1="140" y1="170" x2="138" y2="212"></line>
+<line class="bone" x1="160" y1="124" x2="174" y2="126"></line>
+<line class="bone" x1="174" y1="126" x2="182" y2="168"></line>
+<line class="bone" x1="182" y1="168" x2="188" y2="210"></line>
+</g>
+<g class="joints">
+<circle class="joint" cx="160" cy="44" r="15"></circle>
+<circle class="joint" cx="160" cy="90" r="4"></circle>
+<circle class="joint" cx="160" cy="124" r="4"></circle>
+<circle class="joint" cx="130" cy="88" r="4"></circle>
+<circle class="joint" cx="114" cy="124" r="4"></circle>
+<circle class="joint" cx="104" cy="158" r="4"></circle>
+<circle class="joint" cx="190" cy="88" r="4"></circle>
+<circle class="joint" cx="212" cy="116" r="4"></circle>
+<circle class="joint" cx="146" cy="126" r="4"></circle>
+<circle class="joint" cx="140" cy="170" r="4"></circle>
+<circle class="joint" cx="138" cy="212" r="4"></circle>
+<circle class="joint" cx="174" cy="126" r="4"></circle>
+<circle class="joint" cx="182" cy="168" r="4"></circle>
+<circle class="joint" cx="188" cy="210" r="4"></circle>
+<circle class="joint picked" cx="232" cy="140" r="6"></circle>
+<circle class="joint-ring" cx="232" cy="140" r="14"></circle>
+</g>
+<path class="drag-arrow" d="M246 150 C262 142 268 128 264 114" stroke-dasharray="5 6"></path>
+<path class="drag-arrow" d="M256 118 L264 112 L266 122" ></path>
+</svg>
+</div>
+<div class="studio-tools"><span class="tool"><i class="fa-solid fa-person"></i></span><span class="tool on"><i class="fa-solid fa-hand-pointer"></i></span><span class="tool"><i class="fa-solid fa-screwdriver-wrench"></i></span><span class="tool"><i class="fa-solid fa-palette"></i></span><span class="tool"><i class="fa-solid fa-camera"></i></span><span class="tool alt"><i class="fa-solid fa-wand-magic-sparkles"></i></span></div>
+<div class="studio-prompt"><i class="fa-solid fa-comment-dots"></i><span><span class="lang-zh">站在礁石上回头,风把外套吹开</span><span class="lang-en">Turning back on the rocks, wind pulling the coat open</span></span><em><span class="lang-zh">参考图 1024</span><span class="lang-en">Reference 1024</span></em></div>
+<p class="art-caption"><span class="lang-zh">界面示意:一根人形骨架站在视口里,选中右手后拖动,肩膀与手臂会一起让开。</span><span class="lang-en">Interface sketch: a humanoid skeleton in the viewport; pick the right hand and drag, and the shoulder and arm give way with it.</span></p>
+</div>
+</section>
+
+<section class="wrap section pose-band" id="pose">
+<div class="split">
+<div>
+<p class="eyebrow"><span class="lang-zh">摆姿</span><span class="lang-en">Posing</span></p>
+<h2><span class="lang-zh">拖一个关节,<br>整条链都会动。</span><span class="lang-en">Drag one joint.<br>The whole chain follows.</span></h2>
+<p><span class="lang-zh">PoseGi 不让你输入一串角度数字,也不让你正对着滑杆猜。骨架摆在那里,点中一个关节,直接拖。拖的时候两颗约束同时生效:每个关节只能在自己的解剖学范围内转,而 IK 会把改动顺着骨链传下去,让手腕而不是整条胳膊看起来断掉。</span><span class="lang-en">PoseGi does not ask you to type angles or guess at sliders. The skeleton is right there: tap a joint and drag it. Two constraints apply while you drag. Each joint only turns inside its own anatomical range, and the IK carries the change down the bone chain so the wrist does not snap while the arm goes with it.</span></p>
+<ol class="mini-steps">
+<li><span class="lang-zh">关节表是纯数据:骨盆,腰,胸,颈,头,加上左右各一套肩,上臂,前臂,手,大腿,小腿,脚。</span><span class="lang-en">The joint table is plain data: hips, spine, chest, neck and head, plus shoulders, upper arms, forearms, hands, thighs, shins and feet on both sides.</span></li>
+<li><span class="lang-zh">每个关节都带自己的可转范围,比如手腕 ±80°,脚踝 -50°..25°,膝盖 -150°..0°。写入前统一收口,越界直接被夹住。</span><span class="lang-en">Every joint carries its own range: a wrist at ±80°, an ankle from -50° to 25°, a knee from -150° to 0°. All writes go through one clamp, so nothing goes past it.</span></li>
+<li><span class="lang-zh">拖「连接杆」是旋转,拖「节点」是移动 —— 同一个手势,不用先切模式。</span><span class="lang-en">Dragging the bone rotates, dragging the node moves. One gesture, no mode to switch first.</span></li>
+<li><span class="lang-zh">绕骨轴自转是拖拽永远碰不到的自由度(转轴就在骨头自己身上),所以它单独有一根滑杆,行程就是该关节自己的范围。</span><span class="lang-en">Twisting around the bone's own axis can never be reached by dragging, because the axis runs through the bone itself. So it gets its own slider, with the joint's own range as its travel.</span></li>
+</ol>
+</div>
+<div class="card joint-card">
+<h3><span class="lang-zh">骨架与它的边界</span><span class="lang-en">The rig and its limits</span></h3>
+<div class="joint-row"><span class="joint-tag"><span class="lang-zh">躯干</span><span class="lang-en">Trunk</span></span><div><strong><span class="lang-zh">骨盆 / 腰 / 胸 / 颈 / 头</span><span class="lang-en">Hips, spine, chest, neck, head</span></strong><p><span class="lang-zh">骨盆可以绕垂直轴整圈转,腰与胸负责前倾后仰和侧弯,颈与头单独微调朝向。重心动一下,整个站姿就不一样了。</span><span class="lang-en">The hips turn a full circle around the vertical axis, spine and chest handle leaning and bending, and neck and head aim on their own. Move the weight and the whole stance changes.</span></p></div></div>
+<div class="joint-row"><span class="joint-tag picked"><span class="lang-zh">右臂</span><span class="lang-en">Right arm</span></span><div><strong><span class="lang-zh">肩 / 上臂 / 前臂 / 手</span><span class="lang-en">Shoulder, upper arm, forearm, hand</span></strong><p><span class="lang-zh">肩有前伸与上举两个方向,上臂活动度最大,肘只做屈伸,手腕再补一段 ±80° 的精细调整。拖动时 IK 会让整条链一起让开。</span><span class="lang-en">The shoulder reaches forward and lifts, the upper arm has the widest travel, the elbow only flexes, and the wrist adds a fine ±80°. Drag any of them and the IK opens the whole chain.</span></p></div></div>
+<div class="joint-row"><span class="joint-tag"><span class="lang-zh">双腿</span><span class="lang-en">Both legs</span></span><div><strong><span class="lang-zh">大腿 / 小腿 / 脚</span><span class="lang-en">Thigh, shin, foot</span></strong><p><span class="lang-zh">髋部前后摆幅大,膝盖只向后弯,脚踝在 -50°..25° 之间找平。两节链用的是闭式解,所以抬腿时膝盖一定会弯,不会退化成一根直杆。</span><span class="lang-en">The hip swings widely fore and aft, the knee only bends backwards, and the ankle levels out between -50° and 25°. Two-bone chains use a closed-form solve, so a lifted leg always bends at the knee instead of collapsing into a straight rod.</span></p></div></div>
+<p class="fine"><span class="lang-zh">出厂带一个造型(宜家人偶),骨架参数就是它的模型数据。这一层单独留着,是为了以后换第二个人偶时只需要登记一次。</span><span class="lang-en">One figure ships in the box (the IKEA mannequin) and its model data is what the rig reads. That layer is kept separate so a second figure would only need to be registered once.</span></p>
+</div>
+</div>
+</section>
+
+<section class="wrap section" id="tools">
+<div class="section-head"><p class="eyebrow"><span class="lang-zh">界面按钮</span><span class="lang-en">The interface</span></p><h2><span class="lang-zh">按钮就在那儿,一按就会。</span><span class="lang-en">The buttons are right there. Press one.</span></h2><p><span class="lang-zh">下面每个图标,都是应用里真实存在的按钮。视口占满整个屏幕,所有工具都收在底部的按钮条里 —— 3D 场景不跟面板抢地方,取景时也不会有人物的头被面板压住。</span><span class="lang-en">Every icon below is a real button in the app. The viewport takes the whole screen and every tool lives in the dock at the bottom, so the 3D scene never fights a panel for room and no head gets covered while you frame a shot.</span></p></div>
+
+<div class="btn-groups">
+<section class="btn-group">
+<h3><i class="fa-solid fa-person" aria-hidden="true"></i> <span class="lang-zh">底部常驻按钮</span><span class="lang-en">The bottom dock</span></h3>
+<div class="btn-grid">
+<div class="btn-item"><span class="app-btn"><i class="fa-solid fa-person" aria-hidden="true"></i></span><div><strong><span class="lang-zh">姿态</span><span class="lang-en">Pose</span></strong><p><span class="lang-zh">打开姿态面板:站姿,T 字,行走,举手,坐下,以及镜像与复位。</span><span class="lang-en">Opens the pose panel: stand, T pose, walk, wave, sit, plus mirror and reset.</span></p></div></div>
+<div class="btn-item"><span class="app-btn"><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i></span><div><strong><span class="lang-zh">选取</span><span class="lang-en">Pick</span></strong><p><span class="lang-zh">点中一个关节。选中的是「连接杆」还是「节点」,决定了接下来拖动是旋转还是移动。</span><span class="lang-en">Taps a joint. Whether you picked the bone or the node decides if the next drag rotates or moves.</span></p></div></div>
+<div class="btn-item"><span class="app-btn"><i class="fa-solid fa-screwdriver-wrench" aria-hidden="true"></i></span><div><strong><span class="lang-zh">工具</span><span class="lang-en">Tools</span></strong><p><span class="lang-zh">视口工具与取景:调整相机距离与构图,让人物在画幅里站好位置。</span><span class="lang-en">Viewport tools and framing: set the camera distance and compose the figure inside the frame.</span></p></div></div>
+<div class="btn-item"><span class="app-btn"><i class="fa-solid fa-palette" aria-hidden="true"></i></span><div><strong><span class="lang-zh">渲染</span><span class="lang-en">Render</span></strong><p><span class="lang-zh">渲染当前造型。这张图既是手机上的预览,也是交给模型的参考图。</span><span class="lang-en">Renders the current pose. That image is both the preview on the phone and the reference handed to the model.</span></p></div></div>
+<div class="btn-item"><span class="app-btn"><i class="fa-solid fa-camera" aria-hidden="true"></i></span><div><strong><span class="lang-zh">截图</span><span class="lang-en">Shot</span></strong><p><span class="lang-zh">把当前造型存成一张图,不发起任何模型请求。</span><span class="lang-en">Saves the current pose as an image without calling any model.</span></p></div></div>
+<div class="btn-item"><span class="app-btn"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></span><div><strong><span class="lang-zh">生成</span><span class="lang-en">Generate</span></strong><p><span class="lang-zh">写下画面描述,把现场渲染的参考图交给当前模型卡。生成中再点一次就是忽略这次结果。</span><span class="lang-en">Write what the picture should be and hand the freshly rendered reference to the active model card. Pressing it again while a job runs ignores that result.</span></p></div></div>
+</div>
+</section>
+
+<section class="btn-group">
+<h3><i class="fa-solid fa-arrows-up-down-left-right" aria-hidden="true"></i> <span class="lang-zh">关节与姿态</span><span class="lang-en">Joints and poses</span></h3>
+<div class="btn-grid">
+<div class="btn-item"><span class="app-btn"><i class="fa-solid fa-arrows-up-down-left-right" aria-hidden="true"></i></span><div><strong><span class="lang-zh">拖连接杆</span><span class="lang-en">Drag the bone</span></strong><p><span class="lang-zh">旋转这个关节,IK 会把改动传给下游的骨节。</span><span class="lang-en">Rotates the joint, and the IK passes the change down the chain.</span></p></div></div>
+<div class="btn-item"><span class="app-btn"><i class="fa-solid fa-up-down-left-right" aria-hidden="true"></i></span><div><strong><span class="lang-zh">拖节点</span><span class="lang-en">Drag the node</span></strong><p><span class="lang-zh">移动这个关节本身,用来微调整体位置。</span><span class="lang-en">Moves the joint itself, for nudging the overall placement.</span></p></div></div>
+<div class="btn-item"><span class="app-btn"><i class="fa-solid fa-rotate" aria-hidden="true"></i></span><div><strong><span class="lang-zh">自转滑杆</span><span class="lang-en">Twist slider</span></strong><p><span class="lang-zh">单独解决绕骨轴的自转,两端就是该关节的解剖边界。</span><span class="lang-en">Handles rotation around the bone axis on its own, with the joint's anatomical limit at either end.</span></p></div></div>
+<div class="btn-item"><span class="app-btn"><i class="fa-solid fa-clone" aria-hidden="true"></i></span><div><strong><span class="lang-zh">镜像</span><span class="lang-en">Mirror</span></strong><p><span class="lang-zh">左右对调,一步把手上的姿势翻到另一边。</span><span class="lang-en">Swaps left and right, flipping the pose to the other side in one step.</span></p></div></div>
+<div class="btn-item"><span class="app-btn plain"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i></span><div><strong><span class="lang-zh">复位</span><span class="lang-en">Reset</span></strong><p><span class="lang-zh">回到默认站姿,重新开始摆。</span><span class="lang-en">Back to the default stance, ready to pose again.</span></p></div></div>
+</div>
+</section>
+
+<section class="btn-group">
+<h3><i class="fa-solid fa-images" aria-hidden="true"></i> <span class="lang-zh">作品与成图</span><span class="lang-en">Artworks and results</span></h3>
+<div class="btn-grid">
+<div class="btn-item"><span class="app-btn"><i class="fa-solid fa-plus" aria-hidden="true"></i></span><div><strong><span class="lang-zh">添加作品</span><span class="lang-en">Add artwork</span></strong><p><span class="lang-zh">一件作品 = 标题 + 提示词 + 它自己的成图。开新作品就是换一块干净画布。</span><span class="lang-en">One artwork is a title, a prompt and its own generated images. Starting a new one gives you a clean sheet.</span></p></div></div>
+<div class="btn-item"><span class="app-btn"><i class="fa-solid fa-images" aria-hidden="true"></i></span><div><strong><span class="lang-zh">作品列表</span><span class="lang-en">Artwork list</span></strong><p><span class="lang-zh">所有作品与它们的成图都在这里,随时回到任何一件接着改。</span><span class="lang-en">Every artwork and its images, ready to be picked up again.</span></p></div></div>
+<div class="btn-item"><span class="app-btn"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></span><div><strong><span class="lang-zh">全屏预览</span><span class="lang-en">Full-screen preview</span></strong><p><span class="lang-zh">双指缩放,拖动平移,双击复位,看清细节。</span><span class="lang-en">Pinch to zoom, drag to pan, double-tap to reset, so you can read the detail.</span></p></div></div>
+<div class="btn-item"><span class="app-btn plain"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i></span><div><strong><span class="lang-zh">复位图片</span><span class="lang-en">Reset the image</span></strong><p><span class="lang-zh">预览里把缩放和平移打回原样。</span><span class="lang-en">Puts zoom and pan back where they started inside the preview.</span></p></div></div>
+<div class="btn-item"><span class="app-btn plain"><i class="fa-regular fa-trash-can" aria-hidden="true"></i></span><div><strong><span class="lang-zh">删除成图</span><span class="lang-en">Delete an image</span></strong><p><span class="lang-zh">不要的那一张就地删掉,作品本身还在。</span><span class="lang-en">Removes the one you do not want while the artwork stays.</span></p></div></div>
+</div>
+</section>
+</div>
+
+<div class="param-card">
+<h3><i class="fa-solid fa-sliders" aria-hidden="true"></i> <span class="lang-zh">参数都摆在明面上</span><span class="lang-en">Every parameter in the open</span></h3>
+<div class="param-grid">
+<div><span class="param-key"><span class="lang-zh">参考图强度</span><span class="lang-en">Reference strength</span></span><span class="param-val">0–200</span></div>
+<div><span class="param-key"><span class="lang-zh">生成分辨率</span><span class="lang-en">Output size</span></span><span class="param-val">512–1024 px</span></div>
+<div><span class="param-key"><span class="lang-zh">参考图边长</span><span class="lang-en">Reference edge</span></span><span class="param-val">1024 px</span></div>
+<div><span class="param-key"><span class="lang-zh">步数</span><span class="lang-en">Steps</span></span><span class="param-val">1–60</span></div>
+<div><span class="param-key"><span class="lang-zh">超时</span><span class="lang-en">Timeout</span></span><span class="param-val">ms</span></div>
+<div><span class="param-key"><span class="lang-zh">自定义请求头</span><span class="lang-en">Custom headers</span></span><span class="param-val">JSON</span></div>
+<div><span class="param-key"><span class="lang-zh">翻译为英文</span><span class="lang-en">Translate to English</span></span><span class="param-val">on / off</span></div>
+</div>
+<p class="fine"><span class="lang-zh">参考图强度 100 是中性:参考图原样交给模型。往下调会把参考图逐步柔化,让提示词接手;往上调则更紧地贴住骨架。参考图本身永远是 1024 边 —— 换了张 512 的模型卡,模型看到的还是同一张图。</span><span class="lang-en">A reference strength of 100 is neutral: the model sees the render as it is. Lower softens it so the prompt takes over; higher sticks tighter to the skeleton. The reference itself is always 1024 on its long edge, so a 512 model card still sees the same picture.</span></p>
+</div>
+</section>
+
+<section class="wrap section" id="models">
+<div class="section-head"><p class="eyebrow"><span class="lang-zh">模型接入</span><span class="lang-en">Connecting models</span></p><h2><span class="lang-zh">本地,云端,还是自己的协议。</span><span class="lang-en">Local, cloud, or your own protocol.</span></h2><p><span class="lang-zh">PoseGi 不自带 API Key,也不绑定任何平台。它按你建的「模型卡」提交请求,模型和工作流仍然在你手上。公网服务必须 HTTPS,可信局域网可以用明文 HTTP。</span><span class="lang-en">PoseGi ships no API key and locks you to no platform. It submits requests through the model cards you create, and the models and workflows stay yours. Public services must use HTTPS; a trusted LAN may use plain HTTP.</span></p></div>
+<div class="provider-grid">
+<article><h3><span class="tile-inline"><img src="/assets/site/brands/comfyui.svg" alt="" loading="lazy"></span><span class="lang-zh">本地 ComfyUI + HamDraw 插件节点(推荐)</span><span class="lang-en">Local ComfyUI with the HamDraw plugin (recommended)</span></h3><p><span class="lang-zh">给 ComfyUI 装上 HamDraw 插件后,PoseGi 就能把参考图和描述交给它,并按插件自报的能力选任务:快速草图是 512 画幅、一两秒出图;放大任务把 1024 渲染图补细节、构图基本不动;Qwen-Image 2.1 会按参考图重新作画,是这里最重也最像成片的一档,单张几十秒。点「测试连接」时插件会自报它有哪些模型和任务,画面参数随之调整。</span><span class="lang-en">With the HamDraw plugin installed, PoseGi hands the reference and the description to ComfyUI and picks a task from what the plugin reports: the quick sketch path is 512 px in a second or two, the upscale task adds detail to the 1024 render without moving the composition, and Qwen-Image 2.1 repaints from the reference, the heaviest and most photographic option at tens of seconds a frame. Test connection asks the plugin what it offers and the form follows along.</span></p><div class="brand-row tight"><a class="brand-chip" href="https://haminn.airen.life/downloads/hamdraw/hamdraw-comfyui-plugin-v2.3.0.zip" download><span class="brand-tile"><i class="fa-solid fa-download" aria-hidden="true"></i></span><span><b><span class="lang-zh">插件 zip 直下</span><span class="lang-en">Plugin zip</span></b><small><span class="lang-zh">解压到 custom_nodes</span><span class="lang-en">Unzip into custom_nodes</span></small></span></a><span class="brand-chip"><span class="brand-tile"><i class="fa-solid fa-bolt" aria-hidden="true"></i></span><b><span class="lang-zh">快速</span><span class="lang-en">Quick</span></b></span><span class="brand-chip"><span class="brand-tile"><i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i></span><b><span class="lang-zh">放大</span><span class="lang-en">Upscale</span></b></span><span class="brand-chip"><span class="brand-tile"><img src="/assets/site/brands/qwen.svg" alt="" loading="lazy"></span><b>Qwen-Image 2.1</b></span></div></article>
+<article><h3><i class="fa-brands fa-openai" aria-hidden="true"></i> <span class="lang-zh">OpenAI Images 兼容</span><span class="lang-en">OpenAI Images compatible</span></h3><p><span class="lang-zh">任何实现了 OpenAI Images 接口的服务都能直接接:填地址、模型 ID 和 API Key,也可以把参考图一起提交过去。</span><span class="lang-en">Any service speaking the OpenAI Images API connects directly: an address, a model ID and an API key, and the reference can go along with the request.</span></p></article>
+<article><h3><i class="fa-solid fa-paintbrush" aria-hidden="true"></i> <span class="lang-zh">SD WebUI / Forge</span><span class="lang-en">SD WebUI and Forge</span></h3><p><span class="lang-zh">指向你的 WebUI 地址,用图生图把渲染图当作初始图,去噪强度就是参考图强度。</span><span class="lang-en">Point it at your WebUI and it runs image-to-image with the render as the init image, where the denoising strength is the reference strength.</span></p></article>
+<article><h3><i class="fa-solid fa-cube" aria-hidden="true"></i> <span class="lang-zh">Stability AI</span><span class="lang-en">Stability AI</span></h3><p><span class="lang-zh">直接用官方的 v2beta 接口,把渲染图当作控制图提交,控制强度同样可调。</span><span class="lang-en">Talks to the official v2beta endpoint and submits the render as the control image, with the control strength just as adjustable.</span></p></article>
+</div>
+<div class="hardware-card">
+<h3><span class="lang-zh">按你的机器挑任务</span><span class="lang-en">Pick a task for the machine you have</span></h3>
+<div class="hardware-grid">
+<div><span class="hardware-tier"><span class="lang-zh">最轻</span><span class="lang-en">Lightest</span></span><p><span class="lang-zh">快速草图:512 画幅,一两秒出图。适合先把构图和人物质感确认下来,再决定要不要放大。</span><span class="lang-en">Quick sketch: 512 px in a second or two, good for settling the composition and the feel before deciding to enlarge.</span></p><div class="brand-row tight"><span class="brand-chip"><span class="brand-tile"><i class="fa-solid fa-bolt" aria-hidden="true"></i></span><b><span class="lang-zh">快速</span><span class="lang-en">Quick</span></b></span></div></div>
+<div><span class="hardware-tier"><span class="lang-zh">中等</span><span class="lang-en">Middle</span></span><p><span class="lang-zh">放大补细节:把手上的 1024 渲染图放大并补细节,构图基本不动。姿势已经对了,只想要更清楚的皮肉。</span><span class="lang-en">Upscale: enlarges the 1024 render and adds detail while the composition stays put, for when the pose is right and only the surface needs more.</span></p><div class="brand-row tight"><span class="brand-chip"><span class="brand-tile"><i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i></span><b><span class="lang-zh">放大</span><span class="lang-en">Upscale</span></b></span></div></div>
+<div><span class="hardware-tier"><span class="lang-zh">最重</span><span class="lang-en">Heaviest</span></span><p><span class="lang-zh">Qwen-Image 2.1 重绘:按参考图重新作画,单张几十秒。画幅 512 到 1024 每 64 一档,中文描述也能直接读。</span><span class="lang-en">Qwen-Image 2.1 repaint: repaints from the reference at tens of seconds a frame, from 512 to 1024 in steps of 64, and it reads Chinese prompts directly.</span></p><div class="brand-row tight"><span class="brand-chip"><span class="brand-tile"><img src="/assets/site/brands/qwen.svg" alt="" loading="lazy"></span><b>Qwen-Image 2.1</b></span></div></div>
+</div>
+</div>
+</section>
+
+<section class="wrap section">
+<div class="custom-card">
+<div>
+<p class="eyebrow"><span class="lang-zh">基于 Haminn,所以能改</span><span class="lang-en">Built on Haminn, so it can be changed</span></p>
+<h2><span class="lang-zh">整个应用,你都能换成自己的。</span><span class="lang-en">Change anything. The whole app.</span></h2>
+<p><span class="lang-zh">PoseGi 是跑在你自己的 <a href="https://haminn.airen.life/">Haminn</a> 里的 MIT 开源应用。在 <a href="https://haminn.airen.life/pages/guide.html#customize">Haminn 的开发页</a>开启开发模式,把地址和密码交给你信任的智能体,骨架关节表,视口取景,界面配色,生图流程,都能按你的习惯重做 —— 关节范围本身就是一张表,改数据不用改编排。</span><span class="lang-en">PoseGi is an MIT-licensed app running inside your own <a href="https://haminn.airen.life/">Haminn</a>. Turn on development mode from the <a href="https://haminn.airen.life/pages/guide.html#customize">Haminn development page</a>, hand the address and password to an agent you trust, and the joint table, the framing, the colours and the generation flow can all be rebuilt around your habits. The joint ranges are a table, so changing the behaviour does not mean rewriting the logic.</span></p>
+<div class="button-row"><a class="button app-button" href="https://haminn.airen.life/pages/guide.html#customize"><span class="lang-zh">看看怎么连接智能体</span><span class="lang-en">How to connect an agent</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a><a class="button secondary" href="https://github.com/zhyuzh3d/PoseGi"><span class="lang-zh">在 GitHub 看源码</span><span class="lang-en">Source on GitHub</span> <i class="fa-brands fa-github" aria-hidden="true"></i></a></div><div class="agent-badges"><span class="brand-chip"><span class="brand-tile"><img src="/assets/site/brands/workbuddy.webp" alt="" loading="lazy"></span><span><b>WorkBuddy</b><small><span class="lang-zh">桌面智能体</span><span class="lang-en">Desktop agent</span></small></span></span><span class="agent-or"><span class="lang-zh">或</span><span class="lang-en">or</span></span><span class="brand-chip"><span class="brand-tile"><i class="fa-brands fa-openai" aria-hidden="true"></i></span><span><b>Codex</b><small><span class="lang-zh">命令行智能体</span><span class="lang-en">CLI agent</span></small></span></span><span class="agent-note"><span class="lang-zh">任何支持 MCP 的智能体都可以</span><span class="lang-en">any MCP-capable agent works</span></span></div></div>
+<img src="/assets/site/haminn-icon.webp" alt="" width="96" height="96">
+</div>
+</section>
+
+<section class="wrap section" id="install">
+<div class="haminn-first">
+<p class="eyebrow"><span class="lang-zh">第一步:装 Haminn</span><span class="lang-en">Step one: install Haminn</span></p>
+<h2><span class="lang-zh">PoseGi 跑在 Haminn 里,先把它装上。</span><span class="lang-en">PoseGi runs inside Haminn. Install that first.</span></h2>
+<p><span class="lang-zh">Haminn 是手机上装应用的地方,负责安装,数据,文件,权限和系统能力。装好 Haminn,再把 PoseGi 加进去。不接模型也能先摆 —— 骨架,关节,预设,取景和截图都能单独用。</span><span class="lang-en">Haminn is where apps live on your phone: it owns installation, data, files, permissions and system capabilities. Install Haminn, then add PoseGi. It poses before any model is connected: the rig, the joints, the presets, the framing and the shot all work on their own.</span></p>
+<div class="button-row">
+<a class="button app-button" href="https://haminn.airen.life/downloads/haminn-v1.12.0-release.apk" download><span class="lang-zh">下载 Haminn 安装包 · 1.12.0</span><span class="lang-en">Get Haminn · 1.12.0</span> <i class="fa-solid fa-arrow-down" aria-hidden="true"></i></a>
+<a class="button secondary" href="https://haminn.airen.life/"><span class="lang-zh">打开 haminn.airen.life</span><span class="lang-en">Open haminn.airen.life</span> <i class="fa-solid fa-up-right-from-square" aria-hidden="true"></i></a>
+</div>
+<p class="fine"><span class="lang-zh">Android 10 及以上,无需 Google Play 服务。<a href="https://haminn.airen.life/pages/download.html">下载页有二维码和校验值</a>。</span><span class="lang-en">Android 10 or later, no Google Play services required. <a href="https://haminn.airen.life/pages/download.html">The download page has a QR code and checksums</a>.</span></p>
+</div>
+
+<div class="install-card">
+<div class="install-head">
+<img src="/assets/site/posegi.webp" alt="" width="62" height="62">
+<div><h2><span class="lang-zh">第二步:把 PoseGi 加进来</span><span class="lang-en">Step two: add PoseGi</span></h2><p><span class="lang-zh">在 Haminn 里扫码,确认后就能打开。</span><span class="lang-en">Scan inside Haminn, confirm, and open it.</span></p></div>
+</div>
+<div class="qr-install">
+<img class="qr" src="https://haminn.airen.life/downloads/happs/life.airen.posegi/install-qr.png" alt="PoseGi 安装二维码：在 Haminn 中点扫码添加扫描；也可复制下方地址。" width="172" height="172">
+<ol class="qr-steps">
+<li><span class="lang-zh">打开 Haminn,点<strong>“扫码添加”</strong>。</span><span class="lang-en">Open Haminn and choose <strong>Scan to add</strong>.</span></li>
+<li><span class="lang-zh">扫描这个二维码,确认安装。</span><span class="lang-en">Scan this code and confirm the install.</span></li>
+<li><span class="lang-zh">点开 PoseGi 就能摆姿势,接好模型后再开生成。</span><span class="lang-en">Open PoseGi and start posing, then add a model to generate.</span></li>
+</ol>
+</div>
+<p class="fine"><span class="lang-zh">正在这台手机上看？复制地址,回到 Haminn 点“从网址”。</span><span class="lang-en">On this phone? Copy the link, then use Add from URL in Haminn.</span></p>
+<div class="copy-field"><code class="address" id="posegiInstallUrl">https://haminn.airen.life/downloads/happs/life.airen.posegi/haminn-install.json</code><button class="button app-button small" data-copy="posegiInstallUrl" data-status="posegiCopyStatus" data-success="已复制。回到 Haminn，点“从网址”粘贴即可。"><i class="fa-regular fa-copy" aria-hidden="true"></i><span><span class="lang-zh">复制地址</span><span class="lang-en">Copy link</span></span></button></div>
+<p id="posegiCopyStatus" class="copy-status" role="status"></p>
+<div class="button-row"><a class="button secondary" href="https://haminn.airen.life/pages/happs.html#happ-life-airen-posegi"><span class="lang-zh">在应用广场查看安装包</span><span class="lang-en">Get the package in the happ gallery</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a><a class="button secondary" href="https://github.com/zhyuzh3d/PoseGi/releases"><span class="lang-zh">下载安装包</span><span class="lang-en">Download package</span> <i class="fa-brands fa-github" aria-hidden="true"></i></a></div>
+</div>
+</section>
+
+<section class="wrap section"><div class="sibling-card">
+<div><p class="eyebrow"><span class="lang-zh">摆完了,画出来</span><span class="lang-en">Posed. Now draw it.</span></p><h2><span class="lang-zh">把姿势交给画笔。</span><span class="lang-en">Hand the pose to a brush.</span></h2><p><span class="lang-zh">HamDraw 是同一个 Haminn 里的实时 AI 绘图工具:你在画布上随手涂,成图层跟着变。PoseGi 管的是骨骼和构图,HamDraw 管的是手感和色彩 —— 一个把人物摆对,一个把画面画美。</span><span class="lang-en">HamDraw is the real-time AI drawing tool for the same Haminn: scribble on the canvas and the result layer follows. PoseGi owns the skeleton and the composition, HamDraw owns the touch and the colour: one gets the figure right, the other makes the picture beautiful.</span></p><div class="button-row"><a class="button sibling-button" href="https://hamdraw.airen.life/"><span class="lang-zh">去看看 HamDraw</span><span class="lang-en">Visit HamDraw</span> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a><a class="button secondary" href="https://haminn.airen.life/pages/happs.html"><span class="lang-zh">应用广场</span><span class="lang-en">Happ gallery</span></a></div>
+<div class="family-links"><p class="eyebrow"><span class="lang-zh">同一个家族</span><span class="lang-en">The same family</span></p><div class="brand-row tight"><a class="brand-chip" href="https://haminn.airen.life/"><span class="brand-tile"><img src="/assets/site/haminn-icon.webp" alt="" loading="lazy"></span><span><b>Haminn</b><small><span class="lang-zh">Android 宿主</span><span class="lang-en">Android host</span></small></span></a><a class="brand-chip" href="https://chataxi.airen.life/"><span class="brand-tile"><img src="/assets/site/chataxi.webp" alt="" loading="lazy"></span><span><b>chataxi</b><small><span class="lang-zh">多角色 AI 群聊</span><span class="lang-en">Multi-role AI chat</span></small></span></a><a class="brand-chip" href="https://hamdraw.airen.life/"><span class="brand-tile"><img src="/assets/site/hamdraw.webp" alt="" loading="lazy"></span><span><b>HamDraw</b><small><span class="lang-zh">实时 AI 绘图</span><span class="lang-en">Real-time AI drawing</span></small></span></a></div></div></div>
+<img src="/assets/site/hamdraw.webp" alt="HamDraw 应用图标" width="132" height="132">
+</div></section>
+
+<section class="wrap prose">
+<section><h2><span class="lang-zh">摆好的姿势会存下来吗？</span><span class="lang-en">Does a pose get saved?</span></h2><p><span class="lang-zh">不存。一件作品 = 标题 + 提示词 + 它自己的成图,姿态不进存储。原因是生成的瞬间手机本来就现场渲染一张参考图,所以没有"先存姿态再生成"的必要。想留住一个造型,点「截图」把它存成图。</span><span class="lang-en">No. An artwork is a title, a prompt and its own generated images; the pose is not stored. The phone already renders a fresh reference at the moment of generation, so saving first would buy nothing. To keep a pose, use Shot and keep the image.</span></p></section>
+<section><h2><span class="lang-zh">一定要有独立显卡吗？</span><span class="lang-en">Do I need a discrete GPU?</span></h2><p><span class="lang-zh">只有本地跑模型才有这个要求,而且最轻的快速草图任务只要 512 画幅,门槛不高。不想装环境就用云端服务,手机照样摆姿。</span><span class="lang-en">Only if you run the model locally, and the lightest quick sketch task runs at 512 px, so the bar is low. If you would rather not set anything up, a cloud service still lets the phone do the posing.</span></p></section>
+<section><h2><span class="lang-zh">生成的图不太像我摆的姿势？</span><span class="lang-en">The result does not quite match my pose?</span></h2><p><span class="lang-zh">先把参考图强度往上调,让模型更紧地贴住骨架;再检查取景,人物在画幅里太小会让姿势细节被稀释。如果只是想要更清楚的皮肉而不改构图,用「放大」而不是重画。</span><span class="lang-en">First raise the reference strength so the model sticks closer to the skeleton, then check the framing: a figure that is small in the frame dilutes the pose. If you only want clearer surface without moving the composition, use Upscale rather than a repaint.</span></p></section>
+<section><h2><span class="lang-zh">和 Haminn 是什么关系？</span><span class="lang-en">How does Haminn fit in?</span></h2><p><span class="lang-zh">PoseGi 是<a href="https://haminn.airen.life/pages/happs.html">应用广场</a>里的一个应用,需要装在 <a href="https://haminn.airen.life/">Haminn</a> 里运行。还没装的话,<a href="https://haminn.airen.life/pages/download.html">下载 Haminn</a> 只要一分钟。</span><span class="lang-en">PoseGi is one of the apps in the <a href="https://haminn.airen.life/pages/happs.html">happ gallery</a> and runs inside <a href="https://haminn.airen.life/">Haminn</a>. If you do not have it yet, <a href="https://haminn.airen.life/pages/download.html">getting Haminn</a> takes a minute.</span></p></section>
+</section>
+
+<section class="wrap final-cta"><h2><span class="lang-zh">先摆对人,再谈画得好。</span><span class="lang-en">Get the figure right first. Then talk about the picture.</span></h2><p><span class="lang-zh">装好 Haminn,扫码把 PoseGi 加进来,拖两下试试。</span><span class="lang-en">Install Haminn, scan, add PoseGi, and drag something.</span></p><div class="button-row"><a class="button app-button" href="#install"><span class="lang-zh">安装 PoseGi</span><span class="lang-en">Install PoseGi</span></a><a class="button secondary" href="https://github.com/zhyuzh3d/PoseGi"><span class="lang-zh">在 GitHub 看源码</span><span class="lang-en">Source on GitHub</span> <i class="fa-brands fa-github" aria-hidden="true"></i></a></div></section>
+</main>
+<footer class="site-footer"><div><a class="brand" href="https://haminn.airen.life">haminn<span class="brand-dot">.</span></a><p>我的应用，我做主。</p></div><nav aria-label="页脚导航"><a href="https://haminn.airen.life/pages/download.html">下载 Haminn</a><a href="https://haminn.airen.life/pages/happs.html">应用广场</a><a href="#install">安装 PoseGi</a><a href="https://haminn.airen.life/pages/privacy.html">隐私与数据</a><a href="https://haminn.airen.life/pages/donate.html">帮助与反馈</a></nav></footer>
+</body></html>

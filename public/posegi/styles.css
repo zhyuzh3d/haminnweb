@@ -1,0 +1,152 @@
+/* PoseGi 产品站的品牌层：沿用 Haminn 官网的令牌与栅格，只加应用专属版式。
+   品牌色取蓝偏紫 #8974ff —— 3D 视口里那盏打在人体上的冷光。
+   间距一律用 grid gap 或 margin，不用 flex gap —— 目标设备 WebView 是 Chrome 83，
+   flex 容器的 gap 在那里并不可靠。 */
+:root {
+  --app:#8974ff; --app-ink:#fff; --app-soft:#eeebff; --app-line:#c9c1ff; --app-deep:#5b40e0;
+  --sibling:#ff2b92; --sibling-ink:#fff;
+}
+:root[data-theme="dark"] { --app-soft:#241f47; --app-line:#4a3f8c; --app-deep:#b0a2ff; }
+@media(prefers-color-scheme:dark) {
+  :root:not([data-theme="light"]) { --app-soft:#241f47; --app-line:#4a3f8c; --app-deep:#b0a2ff; }
+}
+
+.accent { color:var(--app-deep); }
+.app-button { background:var(--app); color:var(--app-ink); }
+.app-icon { background:var(--app-soft); color:var(--app-deep); }
+/* 品牌色顶栏与章节标签：几个站点共用版式，靠这几个覆盖拉开各自的识别度。 */
+.eyebrow { color:var(--app-deep); }
+.header-tools > .button { background:var(--app); color:var(--app-ink); }
+.language-switch button[aria-pressed="true"],.theme-switch button[aria-pressed="true"] { color:var(--app-deep); }
+.brand-chip:hover { border-color:var(--app); }
+.button.sibling-button { background:var(--sibling); color:var(--sibling-ink); }
+
+/* 首屏 */
+.app-hero { display:grid; grid-template-columns:1.02fr 1fr; align-items:center; gap:var(--space-7); padding:var(--section-space) 0; }
+.app-hero .fine { margin-top:20px; }
+.hero-points { list-style:none; margin:0 0 var(--space-5); padding:0; display:grid; gap:14px; max-width:560px; }
+.hero-points li { position:relative; padding-left:28px; color:var(--ink); font-size:17px; font-weight:600; line-height:1.65; letter-spacing:-.01em; }
+.hero-points li::before { content:""; position:absolute; left:2px; top:9px; width:11px; height:6px; border-left:2.5px solid var(--app-deep); border-bottom:2.5px solid var(--app-deep); transform:rotate(-45deg); }
+
+/* 视口示意：一根人形骨架站在 3D 网格上，右手被选中，正在被拖。 */
+.studio { position:relative; padding:20px; border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow); }
+.studio-bar { display:grid; grid-auto-flow:column; align-items:center; justify-content:start; gap:9px; padding-bottom:14px; border-bottom:1px solid var(--line); font-size:12px; font-weight:700; color:var(--muted); }
+.studio-dot { width:11px; height:11px; border-radius:4px; background:var(--app); }
+.studio-live { margin-left:auto; padding:4px 9px; border-radius:999px; background:var(--app-soft); color:var(--app-deep); font-size:10px; letter-spacing:.06em; }
+.studio-stage { position:relative; height:268px; margin:18px 0; border:1px solid var(--line); border-radius:18px; overflow:hidden; background:var(--soft); }
+.studio-stage svg { width:100%; height:100%; display:block; }
+/* 网格底板：只画线，颜色吃主题变量，深色主题下自然变暗。 */
+.grid-floor { stroke:var(--line); stroke-width:.6; opacity:.85; }
+.bone { stroke:var(--ink); stroke-width:7; stroke-linecap:round; fill:none; opacity:.8; }
+.bone.dimmed { opacity:.34; }
+.joint { fill:var(--ink); opacity:.72; }
+.joint.picked { fill:var(--app); opacity:1; }
+.joint-ring { fill:none; stroke:var(--app); stroke-width:2; }
+.drag-arrow { stroke:var(--app); stroke-width:2.5; stroke-linecap:round; fill:none; }
+.studio-tools { display:grid; grid-auto-flow:column; justify-content:start; gap:8px; }
+.tool { display:grid; place-items:center; width:42px; height:42px; border-radius:14px; background:var(--soft); color:var(--muted); font-size:14px; }
+.tool.on { background:var(--app); color:var(--app-ink); }
+.tool.alt { background:var(--app-soft); color:var(--app-deep); }
+.studio-prompt { display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:10px; margin-top:14px; padding:12px 14px; border:1px solid var(--line); border-radius:14px; background:var(--bg); font-size:12px; color:var(--muted); }
+.studio-prompt i { color:var(--app-deep); }
+.studio-prompt em { font-style:normal; font-size:10px; padding:4px 8px; border-radius:8px; background:var(--app-soft); color:var(--app-deep); white-space:nowrap; }
+.studio .art-caption { margin-top:16px; }
+
+/* 摆姿区：左边讲，右边摆关节表。 */
+.pose-band { border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:var(--section-space) 0; }
+.pose-band .split { align-items:start; }
+.pose-band .mini-steps { margin-top:var(--space-5); }
+.joint-card { padding:var(--card-space); }
+.joint-row { display:grid; grid-template-columns:74px minmax(0,1fr); gap:14px; padding:15px 0; border-bottom:1px solid var(--line); }
+.joint-row:last-of-type { border-bottom:0; }
+.joint-tag { align-self:start; padding:5px 8px; border-radius:9px; background:var(--soft); color:var(--muted); font-size:11px; font-weight:700; text-align:center; }
+.joint-tag.picked { background:var(--app); color:var(--app-ink); }
+.joint-row strong { display:block; font-size:15px; margin-bottom:6px; }
+.joint-row p { margin:0; font-size:13px; line-height:1.75; }
+.joint-card .fine { margin-top:var(--space-4); }
+
+/* 真实按钮图例：每个 .app-btn 都照抄应用里那颗按钮的图标。 */
+.btn-groups { display:grid; gap:var(--space-5); }
+.btn-group { padding:var(--card-space); border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); }
+.btn-group > h3 { display:grid; grid-auto-flow:column; align-items:center; justify-content:start; gap:10px; font-size:18px; margin-bottom:var(--space-5); }
+.btn-group > h3 i { color:var(--app-deep); font-size:15px; }
+.btn-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(272px,1fr)); gap:18px 26px; }
+.btn-item { display:grid; grid-template-columns:44px minmax(0,1fr); gap:14px; align-items:start; }
+.btn-item strong { display:block; font-size:15px; color:var(--ink); margin-bottom:5px; }
+.btn-item p { margin:0; font-size:13px; line-height:1.7; color:var(--muted); }
+.app-btn { display:grid; place-items:center; width:44px; height:44px; border-radius:14px; background:var(--app); color:var(--app-ink); font-size:15px; }
+.app-btn.plain { background:var(--soft); color:var(--app-deep); }
+
+/* 参数一览。 */
+.param-card { margin-top:var(--space-5); padding:var(--card-space); border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); }
+.param-card h3 { display:grid; grid-auto-flow:column; align-items:center; justify-content:start; gap:10px; font-size:18px; margin-bottom:var(--space-5); }
+.param-card h3 i { color:var(--app-deep); font-size:15px; }
+.param-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(228px,1fr)); gap:10px; margin-bottom:var(--space-4); }
+.param-grid > div { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:10px; align-items:baseline; padding:11px 14px; border-radius:13px; background:var(--bg); }
+.param-key { font-size:13px; color:var(--ink); }
+.param-val { font:600 12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace; color:var(--app-deep); white-space:nowrap; }
+.param-card .fine { margin:0; }
+
+/* 模型接入。 */
+.provider-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(288px,1fr)); gap:var(--space-4); }
+/* 本地 ComfyUI 是主路径，占满一整行；其余三种接法是并列的备选。 */
+.provider-grid article:first-child { grid-column:1 / -1; }
+.provider-grid article { padding:var(--space-5); border:1px solid var(--line); border-top:3px solid var(--app); border-radius:18px; background:var(--surface); }
+.provider-grid h3 { font-size:15px; display:grid; grid-auto-flow:column; align-items:center; justify-content:start; gap:9px; }
+.provider-grid h3 i { color:var(--app-deep); font-size:13px; }
+.provider-grid p { margin:0; font-size:13px; line-height:1.78; }
+.provider-grid code { font-size:12px; padding:1px 5px; border-radius:6px; background:var(--soft); }
+
+.hardware-card { margin-top:var(--space-5); padding:var(--card-space); border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); }
+.hardware-card h3 { font-size:20px; margin-bottom:var(--space-4); }
+.hardware-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:var(--space-4); }
+.hardware-grid > div { padding:var(--space-4); border-radius:16px; background:var(--bg); }
+.hardware-tier { display:inline-block; margin-bottom:10px; padding:4px 10px; border-radius:8px; background:var(--app); color:var(--app-ink); font-size:11px; font-weight:750; letter-spacing:.04em; }
+.hardware-grid p { margin:0; font-size:13px; line-height:1.75; }
+
+/* 基于 Haminn 的自由定制。 */
+.custom-card { display:grid; grid-template-columns:minmax(0,1fr) 96px; gap:var(--space-6); align-items:center; padding:var(--card-space); border:1px solid var(--app-line); border-radius:var(--radius); background:var(--app-soft); }
+.custom-card h2 { font-size:clamp(26px,3vw,36px); }
+.custom-card .button-row { margin-top:var(--space-4); }
+.custom-card img { width:96px; height:96px; justify-self:end; }
+
+/* 安装：先 Haminn，再 PoseGi。 */
+.haminn-first { margin-bottom:var(--space-6); padding:var(--card-space); border:1px solid var(--app-line); border-radius:var(--radius); background:var(--app-soft); }
+.haminn-first h2 { font-size:clamp(26px,3vw,34px); margin-bottom:10px; }
+.haminn-first p { max-width:760px; }
+.haminn-first .button-row { margin-top:var(--space-4); }
+
+.install-card { padding:var(--card-space); border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); }
+.install-head { display:grid; grid-template-columns:62px minmax(0,1fr); align-items:center; gap:15px; margin-bottom:26px; }
+.install-head img { width:62px; height:62px; border-radius:18px; }
+.install-head h2 { font-size:27px; margin:0 0 4px; }
+.install-head p { margin:0; font-size:13px; }
+.install-card .button-row { margin-top:var(--space-5); }
+
+.sibling-card { display:grid; grid-template-columns:minmax(0,1fr) 150px; align-items:center; gap:var(--space-6); padding:var(--card-space); border:1px solid var(--line); border-radius:var(--radius); background:var(--surface); }
+.sibling-card img { width:132px; height:132px; border-radius:32px; justify-self:end; }
+.sibling-card h2 { font-size:27px; }
+.sibling-card .button-row { margin-top:var(--space-4); }
+.sibling-card .family-links { margin-top:var(--space-5); padding-top:var(--space-4); border-top:1px solid var(--line); }
+
+/* 摆的是什么：一味"预告感"的卡片，讲清只用一个人偶模型这件事。 */
+.figure-note { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:var(--space-4); margin-top:var(--space-5); }
+
+@media(max-width:1000px) {
+  .app-hero { grid-template-columns:1fr; gap:var(--space-6); }
+  .studio { max-width:520px; }
+  .custom-card { grid-template-columns:1fr; gap:var(--space-5); }
+  .custom-card img { justify-self:start; width:76px; height:76px; }
+}
+@media(max-width:760px) {
+  .pose-band { padding:var(--space-7) 0; }
+  .pose-band .split { grid-template-columns:1fr; gap:var(--space-5); }
+  .studio-stage { height:230px; }
+  .hero-points li { font-size:16px; }
+  .sibling-card { grid-template-columns:1fr; gap:var(--space-5); }
+  .sibling-card img { justify-self:start; width:104px; height:104px; border-radius:26px; }
+  .studio-prompt { grid-template-columns:auto minmax(0,1fr); }
+  .studio-prompt em { grid-column:1 / -1; justify-self:start; }
+  .btn-grid { grid-template-columns:1fr; }
+}
+@media(hover:hover) { .btn-item:hover .app-btn { background:var(--app-deep); } .btn-item:hover .app-btn.plain { background:var(--soft); } }

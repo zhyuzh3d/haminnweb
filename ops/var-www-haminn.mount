@@ -1,0 +1,12 @@
+[Unit]
+Description=HaminnWeb public directory bind mount
+Before=nginx.service
+
+[Mount]
+What=/root/haminnweb/public
+Where=/var/www/haminn
+Type=none
+Options=bind
+
+[Install]
+WantedBy=multi-user.target

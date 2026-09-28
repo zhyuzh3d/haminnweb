@@ -1,0 +1,16 @@
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.tmp
+
+# Local-only configuration and credentials.
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.token
+
+# Test-only tooling installed on demand (tools/flows.test.cjs needs linkedom).
+node_modules/
