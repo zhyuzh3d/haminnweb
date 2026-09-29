@@ -50,7 +50,7 @@
     ["跳到主要内容", "Skip to main content"], ["Haminn 首页", "Haminn home"], ["网站导航", "Site navigation"], ["页脚导航", "Footer navigation"],
     ["认识 Haminn", "Why Haminn"], ["开始使用", "Get started"], ["常见问题", "FAQ"], ["下载", "Download"], ["下载 Haminn", "Get Haminn"],
     ["应用广场", "Happ gallery"], ["官方应用", "Official apps"], ["产品网站", "Product site"],
-    ["chataxi 网站", "chataxi site"], ["HamDraw 网站", "HamDraw site"], ["PoseGi 网站", "PoseGi site"],
+    ["Chataxi 网站", "Chataxi site"], ["HamDraw 网站", "HamDraw site"], ["PoseGi 网站", "PoseGi site"],
     ["隐私与数据", "Privacy & Data"], ["帮助与反馈", "Help & Feedback"], ["我的应用，我做主。", "My software. My way."],
 
     ["欢迎来到自己的软件时代", "Welcome to software on your terms"], ["你的软件，", "Your software."], ["你说了算。", "Your rules."],
@@ -64,7 +64,7 @@
     ["先用起来", "Start with something useful"], ["安装 Haminn，再添加喜欢的应用。打开就像日常使用手机软件一样自然。", "Install Haminn, add an app, and use it like any other app on your phone."],
     ["改成喜欢的样子", "Make it yours"], ["字体大一点，按钮少一点，功能更顺手一点。把想法告诉你的 AI 助手。", "Bigger type. Fewer buttons. A feature that works the way you do. Tell your AI coding agent what to change."],
     ["扫一扫，分享给身边的人", "Share it with a scan"], ["在应用卡片点“分享”，另一台手机用 Haminn 扫码确认，就能安装同一个 happ。", "Tap “Share” on the app card. A friend can scan the QR code in Haminn, review the details, and install their own copy."],
-    ["第一个应用,从 chataxi 开始。", "Start with chataxi."], ["安装 Haminn 后扫码添加即可。也可以先看它们各自的网站:chataxi 做多角色群聊与流式语音,HamDraw 做随手涂鸦,实时成图,PoseGi 做 3D 摆姿生图。", "Install Haminn and scan to add. You can also visit their own sites first: chataxi for multi-role group chat with streaming speech, HamDraw for real-time doodle-to-image, and PoseGi for 3D posing."],
+    ["第一个应用,从 Chataxi 开始。", "Start with Chataxi."], ["安装 Haminn 后扫码添加即可。也可以先看它们各自的网站:Chataxi 做多角色群聊与流式语音,HamDraw 做随手涂鸦,实时成图,PoseGi 做 3D 摆姿生图。", "Install Haminn and scan to add. You can also visit their own sites first: Chataxi for multi-role group chat with streaming speech, HamDraw for real-time doodle-to-image, and PoseGi for 3D posing."],
     ["去安装第一个应用", "Add your first app"], ["你说想法，AI 帮你实现", "Bring the idea. AI helps you build it."],
     ["想怎么改，", "Want it different?"], ["就跟它说。", "Just ask."], ["在 Haminn 开启开发模式，连接你熟悉的智能体。接下来，用平常说话的方式描述你的需要。", "Turn on Development Mode in Haminn and connect Codex or WorkBuddy. Then describe what you want in your own words."],
     ["访问官网", "Open website"], ["看看怎么连接", "How to connect"], ["一个小小的改变，就更适合自己", "Small changes. A much better fit."],
@@ -83,8 +83,8 @@
     ["Haminn 是装应用的地方。先安装 Haminn，再添加一个应用，就有得玩了。", "Haminn is a home for the apps you choose and create. Install Haminn, add one app, and you’re ready."],
     ["01 · 安装 Haminn", "01 · Install Haminn"], ["给应用一个家。", "Give your apps a home."], ["用 Android 手机下载安装，完成后打开 Haminn。", "Download Haminn on your Android phone, install it, and open the app."],
     ["Android 10 及以上 · 已安装？直接看第二步。", "Android 10 or later · Already have Haminn? Skip to step 2."], ["02 · 添加第一个应用", "02 · Add your first app"],
-    ["试试 chataxi", "Try chataxi"], ["把喜欢的 AI，放在一起聊。", "Chat with all your favorite AI models in one place."], ["打开 Haminn，点", "Open Haminn and tap"],
-    ["“扫码添加”", "“Scan to add”"], ["扫描这个二维码，确认安装。", "Scan this QR code, then review and confirm the install."], ["点开 chataxi，就能开始设置。", "Open chataxi and follow the setup."],
+    ["试试 Chataxi", "Try Chataxi"], ["把喜欢的 AI，放在一起聊。", "Chat with all your favorite AI models in one place."], ["打开 Haminn，点", "Open Haminn and tap"],
+    ["“扫码添加”", "“Scan to add”"], ["扫描这个二维码，确认安装。", "Scan this QR code, then review and confirm the install."], ["点开 Chataxi，就能开始设置。", "Open Chataxi and follow the setup."],
     ["正在这台手机上看？复制地址，回到 Haminn 点“从网址”。", "Viewing this page on the same phone? Copy the link, switch back to Haminn, and choose “From URL.”"],
     ["复制地址", "Copy link"], ["已复制。回到 Haminn，点“从网址”粘贴即可。", "Copied. Switch back to Haminn, choose “From URL,” and paste the link."],
     ["首次聊天需连接自己的 AI 服务。", "To start chatting, connect your preferred AI provider."], ["怎么连接？", "How does that work?"],
@@ -92,7 +92,7 @@
     ["换个颜色、调整布局、增加一个功能。让你熟悉的智能体帮忙做。", "Change the colors, rethink the layout, add a feature—your AI coding agent can handle the implementation."],
     ["手机和电脑连上同一个 Wi-Fi。", "Connect your phone and computer to the same Wi-Fi network."], ["在 Haminn 的", "In Haminn, open the"], ["“开发”", "“Development”"], ["页开启开发模式。", "tab and turn on Development Mode."],
     ["把页面显示的", "Copy the"], ["地址和密码", "address and password"], ["发给电脑上的 Codex 或 WorkBuddy，请它连接。", "shown on screen into Codex or WorkBuddy on your computer, then ask it to connect."],
-    ["“帮我把 chataxi 的文字放大一些，再换成我喜欢的紫色。”", "“Make the text in chataxi larger, and switch the accent color to my favorite shade of purple.”"],
+    ["“帮我把 Chataxi 的文字放大一些，再换成我喜欢的紫色。”", "“Make the text in Chataxi larger, and switch the accent color to my favorite shade of purple.”"],
     ["连接后，想改什么就继续说。做完回到手机里试一试。", "Once connected, keep describing the changes you want. Try each version on your phone and refine it from there."], ["连接遇到问题？", "Having trouble connecting?"],
     ["没有合适的？做一个自己的", "Can’t find the right app? Make your own."], ["从一个小心愿开始。", "Start with one small need."],
     ["不用一次想得很完整。先说你想解决的那件小事，做出来试试，再一点点变成最合你心意的样子。", "You don’t need a perfect spec. Start with one everyday problem, try the first version, and shape it around what actually works for you."],
@@ -110,17 +110,17 @@
     ["Android 版 · 1.12.0", "Android · 1.12.0"], ["适用于 Android 10 及以上手机。无需 Google Play 服务。", "Works on Android 10 or later. No Google Play services required."],
     ["下载 Android 安装包 · 3.2 MB", "Download for Android · 3.2 MB"], ["下载完成后，点击文件，按手机提示安装。", "When the download finishes, open the file and follow Android’s prompts."], ["正在手机上查看？下载完成后，点击文件并按提示安装。", "On your phone? When the download finishes, open the file and follow Android’s prompts."], ["遇到安装提示？", "Need help with the install?"],
     ["Haminn Android 安装包下载二维码", "QR code to download Haminn for Android"], ["用手机扫码下载", "Scan to download"], ["正在电脑上查看？打开手机相机扫描。", "On a computer? Scan with your phone’s camera."],
-    ["装好了？再加一个应用。", "Haminn is installed. What’s next?"], ["Haminn 安装完成后，还需要添加你想用的软件。我们准备了 chataxi，扫码就能添加。", "Haminn is the home; now add an app to use. Start with chataxi—scan once and it’s ready to install."],
-    ["去安装 chataxi", "Get chataxi"], ["已经在用 Haminn？日常界面更新可以直接在应用内完成。", "Already use Haminn? You can update its everyday interface from inside the app."], ["了解更新", "How updates work"],
+    ["装好了？再加一个应用。", "Haminn is installed. What’s next?"], ["Haminn 安装完成后，还需要添加你想用的软件。我们准备了 Chataxi，扫码就能添加。", "Haminn is the home; now add an app to use. Start with Chataxi—scan once and it’s ready to install."],
+    ["去安装 Chataxi", "Get Chataxi"], ["已经在用 Haminn？日常界面更新可以直接在应用内完成。", "Already use Haminn? You can update its everyday interface from inside the app."], ["了解更新", "How updates work"],
 
     ["遇到问题，来这里找答案", "Answers when you need them"], ["有疑问？慢慢看。", "Questions? Start here."], ["刚开始用，或想再多玩一点，都可以从一个问题开始。", "Whether you’re setting up your first app or exploring what’s possible, find the answer that matches what you’re trying to do."],
     ["安装与上手", "Getting started"], ["日常使用", "Using Haminn"], ["AI 与定制", "Create & customize"], ["或", "or"], ["任何支持 MCP 的智能体都可以", "any MCP-capable agent works"], ["深入了解", "Technical details"], ["想深入了解", "Under the hood"], ["问题分类", "Browse by topic"], ["查找你的问题", "Search the FAQ"],
     ["Haminn 和里面的应用是什么关系？", "What’s the difference between Haminn and the apps inside it?"], ["Haminn 是手机上用来安装和打开应用的地方。里面的应用叫 happ，可以是 AI 聊天工具、清单、记事本，或为自己做的小工具。先安装 Haminn，再添加 happ，就能开始用。", "Haminn is the app that installs and opens your personal software. Apps inside Haminn are called happs. A happ might be an AI chat app, a list, a notebook, or a tool made just for you. Install Haminn, add a happ, and you’re ready."],
     ["下载后怎么安装？手机提示“未知来源”怎么办？", "How do I install Haminn if Android warns about unknown apps?"], ["点击下载完成的 APK 文件，按手机提示安装。如果系统要求，允许这次用于下载的浏览器或文件管理器安装应用。安装完成后可以关闭这项权限。Haminn 适用于 Android 10 及以上设备。", "Open the APK you downloaded and follow Android’s prompts. If asked, allow installs from the browser or file manager you used, then turn that permission off again after Haminn is installed. Haminn requires Android 10 or later."],
     ["支持 iPhone 吗？需要 Google Play 吗？", "Does Haminn work on iPhone? Does it need Google Play?"], ["目前提供 Android 版，iPhone 暂不支持。Haminn 的安装和核心使用不需要 Google Play 服务，具体应用所需的网络服务由该应用决定。", "Haminn is currently available for Android, not iPhone. It does not depend on Google Play services. Individual apps may still need their own online services."],
-    ["安装后怎么是空的？", "Why is Haminn empty after installation?"], ["这是正常的，你还需要添加一个 happ。在 Haminn 中点“扫码添加”或“从网址”，就可以安装应用。", "That’s expected. Haminn is the home; you choose what goes inside it. Tap “Scan to add” or “From URL” to install your first happ."], ["先试试 chataxi", "Try chataxi first"],
+    ["安装后怎么是空的？", "Why is Haminn empty after installation?"], ["这是正常的，你还需要添加一个 happ。在 Haminn 中点“扫码添加”或“从网址”，就可以安装应用。", "That’s expected. Haminn is the home; you choose what goes inside it. Tap “Scan to add” or “From URL” to install your first happ."], ["先试试 Chataxi", "Try Chataxi first"],
     ["网页和 Haminn 都在同一台手机上，怎么扫码？", "How can I scan the code if I’m viewing this page on the same phone?"], ["不用扫码。在", "You don’t need to scan. On the"], ["入门页", "Get Started page"], ["点“复制地址”，回到 Haminn 点“从网址”，粘贴并确认。无法复制时，也可以长按地址手动复制。", "choose “Copy link,” switch back to Haminn, tap “From URL,” paste, and confirm. If copying doesn’t work, press and hold the link to copy it manually."],
-    ["chataxi 装好了，为什么还不能聊天？", "I installed chataxi. Why can’t I chat yet?"], ["chataxi 用来连接你选择的 AI 模型，本身不附送模型服务或额度。打开后按应用中的连接引导添加服务，填入服务商提供的 API 密钥并选择模型，再创建角色开始聊天。网络和费用以你选择的服务为准。", "chataxi connects to an AI provider you choose; model access and usage credits are not included. Follow the in-app setup to add a provider, enter its API key, choose a model, and create a character. Availability and cost depend on your provider."], ["密钥只填写在 chataxi 的服务配置中，不要放进问题反馈或分享给其他人。", "Enter API keys only in chataxi’s provider settings. Never include them in feedback or share them with anyone."],
+    ["Chataxi 装好了，为什么还不能聊天？", "I installed Chataxi. Why can’t I chat yet?"], ["Chataxi 用来连接你选择的 AI 模型，本身不附送模型服务或额度。打开后按应用中的连接引导添加服务，填入服务商提供的 API 密钥并选择模型，再创建角色开始聊天。网络和费用以你选择的服务为准。", "Chataxi connects to an AI provider you choose; model access and usage credits are not included. Follow the in-app setup to add a provider, enter its API key, choose a model, and create a character. Availability and cost depend on your provider."], ["密钥只填写在 Chataxi 的服务配置中，不要放进问题反馈或分享给其他人。", "Enter API keys only in Chataxi’s provider settings. Never include them in feedback or share them with anyone."],
     ["Haminn 和应用怎么更新？", "How do updates work?"], ["Haminn 的管理界面已包含在安装包内。需要更新界面时，在 Haminn“设置”中点“更新本地版本”即可，无需单独下载界面包。", "Haminn’s management interface is built into the app. When an interface update is available, open Settings and choose “Update local version.” There’s no separate UI package to download."],
     ["你安装的 happ 有更新地址时，可以在应用管理中检查更新。需要升级 HaminnApp 本身时，从", "When an installed happ includes an update URL, check for updates from App management. To update Haminn itself, download the latest APK from the"], ["下载页", "Download page"], ["获取新版 APK 并覆盖安装。", "and install it over your current version."],
     ["可以把常用应用放到桌面吗？", "Can I add an app to my home screen?"], ["可以。在 Haminn 中找到应用，使用添加到桌面的入口，按系统提示确认。也可以点亮爱心，放进 Haminn 的收藏。", "Yes. Open the app in Haminn, choose “Add to Home screen,” and confirm Android’s prompt. Tap the heart to add it to Favorites inside Haminn."],
@@ -158,16 +158,16 @@
     ["参与 Haminn", "Contribute to Haminn"], ["分享使用经验、贡献代码，或把自己的好用应用带给更多人。", "Share what you’ve learned, contribute code, or help a useful app reach more people."], ["查看项目", "View on GitHub"], ["让问题更容易被解决", "Help us understand the issue"], ["反馈时附上 Haminn 版本和操作步骤会很有帮助。必要时，可在设置中复制运行诊断；发送前请移除密码、账号凭据和私人内容。", "Include your Haminn version and the steps that reproduce the problem. If needed, copy Runtime Diagnostics from Settings. Remove passwords, account credentials, and private content before posting."], ["关于支持项目", "Ways to support Haminn"], ["目前没有开放官方捐赠收款入口。认真使用、分享建议、完善文档，都是对 Haminn 的支持。", "Haminn does not currently accept donations. Using it, sharing thoughtful feedback, and improving the docs are all meaningful ways to help."],
 
     ["应用广场", "Happs"], ["官方应用", "Official apps"], ["还没有发布任何 happ。", "No happ has been published yet."],
-    ["选择语言", "Choose language"], ["选择明暗主题", "Choose theme"], ["深色主题", "Dark"], ["浅色主题", "Light"], ["跟随系统", "Use system setting"], ["在 GitHub 查看 chataxi 项目", "View chataxi on GitHub"], ["GitHub 仓库", "GitHub repository"],
-    ["两步开始使用", "Get started in two steps"], ["chataxi 安装二维码：在 Haminn 中点扫码添加扫描；也可复制下方地址。", "QR code to install chataxi. In Haminn, choose Scan to add, then scan this code. You can also copy the link below."], ["chataxi 安装地址", "chataxi install link"], ["试试：扫码、分享、更新……", "Try “scan,” “share,” or “update”…"],
+    ["选择语言", "Choose language"], ["选择明暗主题", "Choose theme"], ["深色主题", "Dark"], ["浅色主题", "Light"], ["跟随系统", "Use system setting"], ["在 GitHub 查看 Chataxi 项目", "View Chataxi on GitHub"], ["GitHub 仓库", "GitHub repository"],
+    ["两步开始使用", "Get started in two steps"], ["Chataxi 安装二维码：在 Haminn 中点扫码添加扫描；也可复制下方地址。", "QR code to install Chataxi. In Haminn, choose Scan to add, then scan this code. You can also copy the link below."], ["Chataxi 安装地址", "Chataxi install link"], ["试试：扫码、分享、更新……", "Try “scan,” “share,” or “update”…"],
 
     // 三个站点各自的身份与导航：每个站点左上角有自己的品牌与栏目名。
-    ["haminn 首页", "Haminn home"], ["chataxi 首页", "chataxi home"], ["HamDraw 首页", "HamDraw home"],
+    ["haminn 首页", "Haminn home"], ["Chataxi 首页", "Chataxi home"], ["HamDraw 首页", "HamDraw home"],
     ["真人语音", "Real voices"], ["多角色群聊", "Group chat"], ["模型配置", "Models"], ["上手", "Get started"],
     ["实时生图", "Real time"], ["涂鸦工具", "Drawing tools"], ["模型接入", "Connecting models"],
-    ["安装 chataxi", "Install chataxi"], ["安装 HamDraw", "Install HamDraw"], ["查看 chataxi 产品网站", "Open the chataxi site"],
+    ["安装 Chataxi", "Install Chataxi"], ["安装 HamDraw", "Install HamDraw"], ["查看 Chataxi 产品网站", "Open the Chataxi site"],
 
-    // chataxi 首页的角色模板：名称与职业取自应用内的真实模板数据。
+    // Chataxi 首页的角色模板：名称与职业取自应用内的真实模板数据。
     ["角色模板分类", "Role template categories"], ["角色模板列表", "Role template list"],
     ["全部", "All"], ["男性", "Male"], ["女性", "Female"], ["其他", "Other"],
     ["云", "Yun"], ["云舒", "Yunshu"], ["岩", "Yan"], ["阿秋", "Aqiu"],
@@ -202,7 +202,7 @@
 
     // HamDraw 首页与两张安装卡片的可访问文本。
     ["HamDraw 安装二维码：在 Haminn 中点扫码添加扫描；也可复制下方地址。", "QR code to install HamDraw. In Haminn, choose Scan to add, then scan this code. You can also copy the link below."],
-    ["HamDraw 安装地址", "HamDraw install link"], ["HamDraw 应用图标", "HamDraw app icon"], ["chataxi 应用图标", "chataxi app icon"],
+    ["HamDraw 安装地址", "HamDraw install link"], ["HamDraw 应用图标", "HamDraw app icon"], ["Chataxi 应用图标", "Chataxi app icon"],
 
     // PoseGi 首页：底部按钮页、章节导航与安装卡片的可访问文本。
     ["PoseGi 首页", "PoseGi home"], ["安装 PoseGi", "Install PoseGi"], ["摆姿", "Posing"], ["界面按钮", "The interface"],
@@ -214,14 +214,14 @@
     "/": { zh: ["你的软件，你说了算 · Haminn", "安装、定制并分享喜欢的应用。Haminn 让每个人都能拥有适合自己的手机软件。"], en: ["Software on your terms · Haminn", "Install, reshape, create, and share apps with AI. Haminn is a home for software that fits the way you live."] },
     "/pages/guide.html": { zh: ["开始使用 · Haminn", "安装 Haminn 和第一个 happ，再按自己的想法定制、创造或分享应用。"], en: ["Get started with Haminn", "Install Haminn, add your first app, then learn how to customize, create, and share software of your own."] },
     "/pages/download.html": { zh: ["下载 · Haminn", "下载 Haminn Android 安装包，开始添加和使用适合自己的应用。"], en: ["Download Haminn for Android", "Get Haminn for Android and start using apps you can make your own."] },
-    "/pages/faq.html": { zh: ["常见问题 · Haminn", "关于安装、设备间分享、chataxi、连接智能体、应用更新和数据的常见问题。"], en: ["Haminn Help & FAQ", "Get clear answers about setup, sharing apps between phones, chataxi, AI coding agents, updates, privacy, and data."] },
+    "/pages/faq.html": { zh: ["常见问题 · Haminn", "关于安装、设备间分享、Chataxi、连接智能体、应用更新和数据的常见问题。"], en: ["Haminn Help & FAQ", "Get clear answers about setup, sharing apps between phones, Chataxi, AI coding agents, updates, privacy, and data."] },
     "/pages/privacy.html": { zh: ["隐私与数据 · Haminn", "了解 Haminn 如何保存应用、数据、授权，以及在线功能如何连接网络。"], en: ["Privacy & Data in Haminn", "See what stays on your phone, what can connect to the internet, and how Haminn keeps you in control."] },
     "/pages/donate.html": { zh: ["帮助与反馈 · Haminn", "查找帮助、反馈使用问题，或参与 Haminn 项目。"], en: ["Help improve Haminn", "Find an answer, report a problem, or contribute to the Haminn project."] },
     "/pages/happs.html": { zh: ["应用广场 · Haminn", "扫描二维码，把官方 happ 装进 Haminn。"], en: ["Happ gallery · Haminn", "Scan a code to install an official happ into Haminn."] }
   };
 
   document.addEventListener("DOMContentLoaded", () => {
-    // App sites (chataxi, hamdraw) ship their own titles by declaring
+    // App sites (Chataxi, hamdraw) ship their own titles by declaring
     // window.HAMINN_SITE_META before this script; the product site falls
     // straight through to the defaults below.
     const meta = Object.assign({}, defaultMeta, window.HAMINN_SITE_META || {});
@@ -314,7 +314,7 @@
     else if (media && media.addListener) media.addListener(() => { if (theme === "system") refreshTheme(); });
     refreshLanguage();
 
-    // The chataxi role-template row ships all 27 templates; the filter chips
+    // The Chataxi role-template row ships all 27 templates; the filter chips
     // above it narrow the row down without a second page load.
     const roleRow = document.querySelector("[data-role-row]");
     if (roleRow) {

@@ -42,7 +42,7 @@ ANDROID_JSON = PUBLIC / "downloads" / "android.json"
 
 # Cache-busting query for the shared site stylesheet and script. Bump it
 # whenever `assets/site/site.css` or `assets/site/site.js` changes.
-ASSET_VERSION = "20260926c"
+ASSET_VERSION = "20260929a"
 
 SITES = {
     "haminn": {
@@ -67,7 +67,7 @@ SITES = {
     },
     "chataxi": {
         "host": "chataxi.airen.life",
-        "brand": {"name": "chataxi", "dot": False, "icon": "/assets/site/chataxi.webp", "plain": True, "href": "/"},
+        "brand": {"name": "Chataxi", "dot": False, "icon": "/assets/site/chataxi.webp", "plain": True, "href": "/"},
         "nav": [
             ("voice", "真人语音", "#voice"),
             ("group", "多角色群聊", "#group"),
@@ -75,12 +75,12 @@ SITES = {
             ("install", "上手", "#install"),
             ("happs", "应用广场", f"{HAMINN}/pages/happs.html"),
         ],
-        "cta": ("安装 chataxi", "#install"),
+        "cta": ("安装 Chataxi", "#install"),
         "github": "https://github.com/zhyuzh3d/chataxi",
         "footer": [
             ("下载 Haminn", f"{HAMINN}/pages/download.html"),
             ("应用广场", f"{HAMINN}/pages/happs.html"),
-            ("安装 chataxi", "#install"),
+            ("安装 Chataxi", "#install"),
             ("隐私与数据", f"{HAMINN}/pages/privacy.html"),
             ("帮助与反馈", f"{HAMINN}/pages/donate.html"),
         ],

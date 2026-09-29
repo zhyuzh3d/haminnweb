@@ -1,4 +1,4 @@
-/* chataxi 产品站的品牌层：只补充 assets/site/site.css 没有的应用专属版式。
+/* Chataxi 产品站的品牌层：只补充 assets/site/site.css 没有的应用专属版式。
    颜色令牌与 Haminn 官网共用，深色主题跟随 site.css 的同一套开关。
    间距一律用 grid gap 或 margin，不用 flex gap —— 目标设备 WebView 是 Chrome 83，
    flex 容器的 gap 在那里并不可靠。 */
@@ -134,7 +134,7 @@
 .step-grid h3 { font-size:19px; margin-bottom:8px; }
 .step-grid p { margin:0; font-size:14px; }
 
-/* 安装：先 Haminn，再 chataxi。 */
+/* 安装：先 Haminn，再 Chataxi。 */
 .haminn-first { margin-bottom:var(--space-6); padding:var(--card-space); border:1px solid var(--app-line); border-radius:var(--radius); background:var(--app-soft); }
 .haminn-first h2 { font-size:clamp(26px,3vw,34px); margin-bottom:10px; }
 .haminn-first p { max-width:760px; }

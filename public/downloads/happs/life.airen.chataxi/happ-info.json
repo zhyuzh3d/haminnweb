@@ -7,7 +7,7 @@
     "en": "Bring the AIs you like into one conversation."
   },
   "description": {
-    "zh": "chataxi 是一个装进 Haminn 的 AI 对话应用：连接自己的模型服务或局域网服务，创建角色，然后开始聊天。每个角色都有身份性格和行为指导两份设定——前者决定它是谁，后者决定它怎么说话、怎么把对话一步步推下去；再加上真人感的流式语音和真正的多角色群聊，所有对话记录都留在这台手机里。角色还能在对话里直接作画：它自己决定什么时候画、写什么提示词，图片就地挂在对话里，可以全屏放大、也可以翻看这一程画过的每一张。",
-    "en": "chataxi is an AI chat happ for Haminn: connect your own model service or a local network endpoint, create roles, and start talking. Every role carries both an identity and its own behavior guidance — who it is, and how it speaks and pushes the scene forward — on top of lifelike streaming speech and real multi-role group chat. Conversations stay on this phone. Roles can also draw right inside the chat: they decide when to paint and what to ask for, the picture lands in the conversation, and you can open it full-screen or flip back through everything drawn so far."
+    "zh": "Chataxi 是一个装进 Haminn 的 AI 对话应用：连接自己的模型服务或局域网服务，创建角色，然后开始聊天。每个角色都有身份性格和行为指导两份设定——前者决定它是谁，后者决定它怎么说话、怎么把对话一步步推下去；再加上真人感的流式语音和真正的多角色群聊，所有对话记录都留在这台手机里。角色还能在对话里直接作画：它自己决定什么时候画、写什么提示词，图片就地挂在对话里，可以全屏放大、也可以翻看这一程画过的每一张。",
+    "en": "Chataxi is an AI chat happ for Haminn: connect your own model service or a local network endpoint, create roles, and start talking. Every role carries both an identity and its own behavior guidance — who it is, and how it speaks and pushes the scene forward — on top of lifelike streaming speech and real multi-role group chat. Conversations stay on this phone. Roles can also draw right inside the chat: they decide when to paint and what to ask for, the picture lands in the conversation, and you can open it full-screen or flip back through everything drawn so far."
   }
 }
