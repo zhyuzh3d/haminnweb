@@ -293,11 +293,16 @@ test('cancelled ZIP picker neither closes existing state nor claims success',asy
  const call=calls.find(c=>c.method==='host.apps.inspectZip');assert.ok(call);assert.equal(calls.some(c=>c.method==='host.apps.importZip'),false);
  assert.match($('#noticeText').textContent,/取消/);assert.equal($('#apps').children.length,1);
 });
-test('a picked ZIP is described before the confirm step and installs only on confirmation',async()=>{
+test('a picked ZIP keeps name and icon editing unavailable until inspection resolves',async()=>{
  const preview={cancelled:false,kind:'package',token:'token-zip',manifestFound:true,name:'chataxi',versionName:'0.6.15-web.1',happId:'life.airen.chataxi',entry:'index.html',iconDataUrl:'',bytes:974848};
- const {$,calls}=setup({respond:(m)=>m==='host.apps.inspectZip'?preview:m==='host.apps.confirmInspect'?{cancelled:false,appId:'life.airen.chataxi',installStrategy:'local'}:undefined});await tick();
- $('#addZip').click();await tick();await tick();
+ let finishInspection;const inspection=new Promise(resolve=>{finishInspection=resolve;});
+ const {$,calls}=setup({respond:(m)=>m==='host.apps.inspectZip'?inspection:m==='host.apps.confirmInspect'?{cancelled:false,appId:'life.airen.chataxi',installStrategy:'local'}:undefined});await tick();
+ $('#addZip').click();await tick();
+ assert.equal($('#addPanel').classList.contains('hidden'),true);
+ assert.equal($('#appEditor').classList.contains('hidden'),true);
+ finishInspection(preview);await tick();await tick();
  assert.equal($('#addPanel').classList.contains('hidden'),false);assert.equal($('#confirmAddLabel').textContent,'确认安装');
+ assert.equal($('#appEditor').classList.contains('hidden'),false);
  assert.equal($('#urlField').classList.contains('hidden'),true);assert.equal($('#name').value,'chataxi');
  assert.match($('#manifestStatus').textContent,/life\.airen\.chataxi/);assert.match($('#manifestStatus').textContent,/0\.6\.15-web\.1/);
  assert.equal(calls.some(c=>c.method==='host.apps.confirmInspect'),false);
@@ -305,22 +310,39 @@ test('a picked ZIP is described before the confirm step and installs only on con
  const confirm=calls.find(c=>c.method==='host.apps.confirmInspect');
  assert.equal(confirm.params.token,'token-zip');assert.equal(confirm.params.favorite,true);assert.equal(confirm.params.name,'chataxi');
 });
-test('a URL that resolves to a package asks for confirmation before installing',async()=>{
+test('a URL keeps name and icon editing unavailable until its package is resolved',async()=>{
  const preview={cancelled:false,kind:'package',token:'token-url',manifestFound:true,name:'chataxi',versionName:'0.6.15-web.1',happId:'life.airen.chataxi',entry:'index.html',iconDataUrl:'',bytes:974848};
  const {$,calls}=setup({respond:(m)=>m==='host.apps.inspectUrl'?preview:m==='host.apps.confirmInspect'?{cancelled:false,appId:'life.airen.chataxi',installStrategy:'local'}:undefined});await tick();
  $('#addUrl').click();
+ assert.equal($('#appEditor').classList.contains('hidden'),true);assert.equal($('#name').value,'');
  $('#url').value='https://haminn.airen.life/downloads/happs/life.airen.chataxi/haminn-install.json';
- $('#name').value='chataxi';$('#confirmAdd').click();await tick();await tick();
+ $('#confirmAdd').click();await tick();await tick();
  assert.equal(calls.some(c=>c.method==='host.apps.installOnline'),false);assert.equal($('#confirmAddLabel').textContent,'确认安装');
+ assert.equal($('#appEditor').classList.contains('hidden'),false);assert.equal($('#name').value,'chataxi');
  assert.equal($('#urlField').classList.contains('hidden'),true);
  $('#confirmAdd').click();await tick();await tick();
  assert.equal(calls.find(c=>c.method==='host.apps.confirmInspect').params.token,'token-url');
 });
-test('a URL that is a plain page still installs directly from the add sheet',async()=>{
+test('a plain URL requires resolution before the editable confirmation and installation steps',async()=>{
  const {$,calls}=setup({respond:(m)=>m==='host.apps.inspectUrl'?{cancelled:false,kind:'live',pageUrl:'https://example.com/',suggestedName:'example.com'}:undefined});await tick();
- $('#addUrl').click();$('#url').value='https://example.com/';$('#name').value='example.com';$('#confirmAdd').click();await tick();await tick();
- const installed=calls.find(c=>c.method==='host.apps.installOnline');assert.equal(installed.params.url,'https://example.com/');
+ $('#addUrl').click();assert.equal($('#appEditor').classList.contains('hidden'),true);
+ $('#url').value='https://example.com/';$('#confirmAdd').click();await tick();await tick();
+ assert.equal($('#appEditor').classList.contains('hidden'),false);assert.equal($('#name').value,'example.com');
+ assert.equal($('#confirmAddLabel').textContent,'确认添加');assert.equal(calls.some(c=>c.method==='host.apps.installOnline'),false);
+ $('#name').value='Example';$('#confirmAdd').click();await tick();await tick();
+ const installed=calls.find(c=>c.method==='host.apps.installOnline');assert.equal(installed.params.url,'https://example.com/');assert.equal(installed.params.name,'Example');
  assert.equal(calls.some(c=>c.method==='host.apps.confirmInspect'),false);
+});
+test('a QR-scanned package URL stays read-only until resolution and confirmation',async()=>{
+ const preview={cancelled:false,kind:'package',token:'token-qr',manifestFound:true,name:'PoseGi',versionName:'0.1.17-web.1',happId:'life.airen.posegi',entry:'index.html',iconDataUrl:'',bytes:123456};
+ const {$,calls}=setup({respond:(m)=>m==='host.apps.scanQr'?{cancelled:false,kind:'url',url:'https://posegi.example/install.json'}:m==='host.apps.inspectUrl'?preview:m==='host.apps.confirmInspect'?{cancelled:false,appId:'life.airen.posegi',installStrategy:'local'}:undefined});await tick();
+ $('#scanQr').click();await tick();await tick();
+ assert.equal($('#appEditor').classList.contains('hidden'),true);assert.equal($('#url').value,'https://posegi.example/install.json');
+ $('#confirmAdd').click();await tick();await tick();
+ assert.equal($('#appEditor').classList.contains('hidden'),false);assert.equal($('#addSourceLabel').textContent,'已解析安装包');
+ assert.equal($('#confirmAddLabel').textContent,'确认安装');assert.equal(calls.some(c=>c.method==='host.apps.confirmInspect'),false);
+ $('#name').value='PoseGi';$('#confirmAdd').click();await tick();await tick();
+ const installed=calls.find(c=>c.method==='host.apps.confirmInspect');assert.equal(installed.params.token,'token-qr');assert.equal(installed.params.name,'PoseGi');
 });
 test('Native install decisions use the shared HaminnUI rounded prompt',async()=>{
  const {w,$,calls}=setup();await tick();
@@ -334,14 +356,17 @@ test('Native install decisions use the shared HaminnUI rounded prompt',async()=>
  const resolved=calls.find(call=>call.method==='host.dialog.resolve');assert.equal(resolved.params.token,'prompt-1');assert.equal(resolved.params.choice,'new');
  assert.equal($('#hostPromptPanel').classList.contains('hidden'),true);
 });
-test('shared and scanned URLs open the standard add sheet and HTTP confirmation stays in HaminnUI',async()=>{
- const {w,$,calls}=setup({respond:(method,params)=>method==='host.apps.installOnline'?{cancelled:false,installStrategy:'live',installKind:'live',appId:'live-app'}:undefined});await tick();
+test('shared URLs require resolution before edits and HTTP confirmation stays in HaminnUI',async()=>{
+ const {w,$,calls}=setup({respond:(method,params)=>method==='host.apps.inspectUrl'?{cancelled:false,kind:'live',suggestedName:'device.test'}:method==='host.apps.installOnline'?{cancelled:false,installStrategy:'live',installKind:'live',appId:'live-app'}:undefined});await tick();
  w.haminnOpenSharedUrl('http://device.test/page');
- assert.equal($('#addPanel').classList.contains('hidden'),false);assert.equal($('#url').value,'http://device.test/page');
+ assert.equal($('#addPanel').classList.contains('hidden'),false);assert.equal($('#url').value,'http://device.test/page');assert.equal($('#appEditor').classList.contains('hidden'),true);
  $('#confirmAdd').click();await tick();
  assert.equal($('#confirmPanel').classList.contains('hidden'),false);assert.match($('#confirmTitle').textContent,/未加密/);
  $('#acceptConfirm').click();await tick();await tick();
- const installed=calls.find(call=>call.method==='host.apps.installOnline');assert.equal(installed.params.url,'http://device.test/page');assert.equal(installed.params.insecureConfirmed,true);
+ assert.equal($('#appEditor').classList.contains('hidden'),false);assert.equal($('#name').value,'device.test');
+ assert.equal(calls.some(call=>call.method==='host.apps.installOnline'),false);
+ $('#name').value='设备网页';$('#confirmAdd').click();await tick();await tick();
+ const installed=calls.find(call=>call.method==='host.apps.installOnline');assert.equal(installed.params.url,'http://device.test/page');assert.equal(installed.params.insecureConfirmed,true);assert.equal(installed.params.name,'设备网页');
 });
 test('the app name saves from its own button and never sends unrelated fields',async()=>{
  const live=structuredClone(app);
