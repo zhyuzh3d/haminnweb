@@ -1,13 +1,13 @@
 {
   "schema": 1,
   "distribution": "Official Integrated Version",
-  "versionName": "1.12.14",
-  "versionCode": 96,
+  "versionName": "1.12.15",
+  "versionCode": 97,
   "applicationId": "life.airen.haminn",
-  "file": "haminn-v1.12.14-oiv-release.apk",
-  "bytes": 5304319,
-  "sha256": "743e767ccd709130e27379b74fe62970907af74e51dbafc9ba7f682a113cd3b6",
-  "sourceCommit": "d95ad1dc062c41a36186c7d21b7687e9be260343",
+  "file": "haminn-v1.12.15-oiv-release.apk",
+  "bytes": 5306783,
+  "sha256": "6f999e3ebf5a0f4c82918226389d30f747ff127405bb47d963ba01faf91192a7",
+  "sourceCommit": "e094f6f2e937887a8bdf6f0a3750e3132a7c730c",
   "apps": [
     {
       "happId": "life.airen.chataxi",

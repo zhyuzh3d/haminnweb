@@ -40,9 +40,10 @@ PUBLIC = ROOT / "public"
 HAMINN = "https://haminn.airen.life"
 ANDROID_JSON = PUBLIC / "downloads" / "android.json"
 
-# Cache-busting query for the shared site stylesheet and script. Bump it
-# whenever `assets/site/site.css` or `assets/site/site.js` changes.
-ASSET_VERSION = "20260929a"
+# Keep the shared stylesheet and script cache keys independent so a copy or
+# behavior update can ship without publishing an unrelated visual redesign.
+CSS_ASSET_VERSION = "20260929a"
+JS_ASSET_VERSION = "20261002d"
 
 SITES = {
     "haminn": {
@@ -208,7 +209,16 @@ def android_release() -> tuple[str, str]:
 def render(site: str, current: str | None, text: str) -> str:
     text = re.sub(r'<header class="site-header">.*?</header>', lambda _: header(site, current), text, count=1, flags=re.S)
     text = re.sub(r'<footer class="site-footer">.*?</footer>', lambda _: footer(site, current), text, count=1, flags=re.S)
-    text = re.sub(r'((?:/assets/site/site\.(?:css|js)|styles\.css)\?v=)[0-9a-z]+', rf'\g<1>{ASSET_VERSION}', text)
+    def replace_asset_version(match: re.Match[str]) -> str:
+        asset = match.group(1)
+        version = JS_ASSET_VERSION if asset.endswith(".js") else CSS_ASSET_VERSION
+        return f"{asset}?v={version}"
+
+    text = re.sub(
+        r'((?:/assets/site/site\.(?:css|js)|styles\.css))\?v=[0-9a-z]+',
+        replace_asset_version,
+        text,
+    )
     version, apk = android_release()
     return text.replace("{{haminn-version}}", version).replace("{{haminn-apk}}", apk)
 
