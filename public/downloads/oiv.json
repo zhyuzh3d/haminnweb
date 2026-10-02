@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "distribution": "Official Integrated Version",
+  "versionName": "1.12.14",
+  "versionCode": 96,
+  "applicationId": "life.airen.haminn",
+  "file": "haminn-v1.12.14-oiv-release.apk",
+  "bytes": 5304319,
+  "sha256": "743e767ccd709130e27379b74fe62970907af74e51dbafc9ba7f682a113cd3b6",
+  "sourceCommit": "d95ad1dc062c41a36186c7d21b7687e9be260343",
+  "apps": [
+    {
+      "happId": "life.airen.chataxi",
+      "name": "Chataxi",
+      "package": "happs/life.airen.chataxi.zip",
+      "sha256": "2bac6f073155e1b0c19821d7e2f0711cd00861779490c54c7908cd9af321d258",
+      "versionCode": 132,
+      "versionName": "0.7.53-web.1"
+    },
+    {
+      "happId": "life.airen.posegi",
+      "name": "PoseGi",
+      "package": "happs/life.airen.posegi.zip",
+      "sha256": "9b240399ca6708fc9fee79d19e149f54955f9d860a738b3a501c0045140626bc",
+      "versionCode": 23,
+      "versionName": "0.1.22-web.1"
+    },
+    {
+      "happId": "life.airen.hamdraw",
+      "name": "HamDraw",
+      "package": "happs/life.airen.hamdraw.zip",
+      "sha256": "0ad411d6b6300eec56d251ad62e3c278a54d3b3ee93f0c643905467eae815a47",
+      "versionCode": 122,
+      "versionName": "0.5.46-web.1"
+    }
+  ]
+}
