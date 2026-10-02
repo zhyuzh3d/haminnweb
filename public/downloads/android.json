@@ -1,9 +1,9 @@
 {
-  "version": "1.12.9",
-  "versionCode": 91,
+  "version": "1.12.10",
+  "versionCode": 92,
   "minAndroid": "10",
   "package": "life.airen.haminn",
-  "file": "haminn-v1.12.9-release.apk",
-  "bytes": 3387259,
-  "sha256": "de5a0bda430fe89a2ad263e5451b55a20a0087b373a3bf0744f553961aa57137"
+  "file": "haminn-v1.12.10-release.apk",
+  "bytes": 3387719,
+  "sha256": "9f204b6e3d168d0f9eb37ac978a9285a9f9c0be76015782b92a8022514743546"
 }
