@@ -163,9 +163,32 @@ test('online HaminnUI exposes the local recovery action',async()=>{
  const {H,$,calls}=setup({respond:method=>method==='host.shell.status'?{configuredMode:'online',runningMode:'online',localVersion:'1.10.8'}:undefined});
  await tick();await H.navigation.showView('settings');await tick();
  assert.equal($('#useLocalShell').classList.contains('hidden'),false);
- assert.match($('#shellVersionSwitch').textContent,/实时在线/);
+ assert.equal($('#shellUpdateTitle').textContent,'更新（实时在线）');
+ assert.equal($('#shellVersionSwitch').textContent,'当前版本：APK 1.8.0 · UI 1.12.5');
  $('#useLocalShell').click();await tick();
  assert.ok(calls.some(call=>call.method==='host.shell.setMode'&&call.params.mode==='local'));
+});
+test('settings shows both current versions and refreshes the read-only official versions on every visit',async()=>{
+ let reads=0;
+ const {H,$,calls}=setup({respond:(method,params)=>{
+  if(method!=='host.shell.status') return undefined;
+  reads++;
+  assert.equal(params.includeOfficialVersions,true);
+  return {configuredMode:'local',runningMode:'local',localVersion:'1.12.3',officialVersionsAvailable:true,officialApkVersion:'1.12.10',officialUiVersion:'1.12.3'};
+ }});
+ await tick();await H.navigation.showView('settings');await tick();
+ assert.equal($('#shellUpdateTitle').textContent,'更新');
+ assert.equal($('#shellVersionSwitch').textContent,'当前版本：APK 1.8.0 · UI 1.12.3');
+ assert.equal($('#officialVersions').tagName.toLowerCase(),'p');
+ assert.equal($('#officialVersions').textContent,'官方最新版本：APK 1.12.10 · UI 1.12.3');
+ await H.navigation.showView('favorites');await H.navigation.showView('settings');await tick();
+ assert.equal(reads,2);
+ assert.equal(calls.filter(call=>call.method==='host.shell.status'&&call.params.includeOfficialVersions).length,2);
+});
+test('an unavailable official version check silently shows unknown',async()=>{
+ const {H,$}=setup({respond:method=>method==='host.shell.status'?{configuredMode:'local',runningMode:'local',localVersion:'1.12.3',officialVersionsAvailable:false}:undefined});
+ await tick();await H.navigation.showView('settings');await tick();
+ assert.equal($('#officialVersions').textContent,'官方最新版本：未知');
 });
 test('host keeps actionable unsupported reasons from current capability adapters',async()=>{
  const {H}=setup({respond:method=>method==='host.voice.ttsVoices'?Promise.reject(Object.assign(new Error('所选系统声音已不可用'),{code:'E_UNSUPPORTED'})):undefined});
