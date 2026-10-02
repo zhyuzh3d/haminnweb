@@ -90,6 +90,91 @@ test('interface language follows the system and a manual choice overrides it',as
  H.i18n.setPreference('zh-CN');assert.equal($('#homePrompt').textContent,'添加一个HAPP应用');assert.equal(storage.get('haminn.language'),'zh-CN');
  H.i18n.setPreference('system');await H.i18n.syncSystemLanguage();assert.equal($('#homePrompt').textContent,'Add a happ');
 });
+test('English copy stays English across every visible page and dynamic settings sheet',async()=>{
+ const auditApp={...app,name:'Notes'};
+ let autoState={...autoBackupConfig},runNowResult={outcome:'completed',removed:2};
+ const {H,$,w}=setup({systemLanguage:'en',apps:[auditApp],respond:(method)=>{
+  if(method==='host.backup.autoBackup.get') return autoState;
+  if(method==='host.backup.autoBackup.runNow') return runNowResult;
+  if(method==='host.apps.inspectUrl') return {kind:'live',suggestedName:''};
+  if(method==='host.backup.autoBackup.save') return {...autoState,enabled:true};
+  if(method==='host.apps.shareStart') return {sessionId:'share-1',name:'Notes',bytes:2048,networkAvailable:false,snapshot:'stable'};
+  if(method==='host.licenses.info') return {text:'Example license text'};
+  if(method==='host.diagnostics.info') return {version:'1.0.0',status:'ready'};
+  return undefined;
+ }});
+ const failures=[], han=/[\u4e00-\u9fff]/;
+ const inspect=label=>{
+  const hiddenOrData=element=>element.closest('.hidden,[data-i18n-ignore],script,style,code,pre');
+  for(const element of [w.document.body,...w.document.body.querySelectorAll('*')]) {
+   if(hiddenOrData(element)) continue;
+   for(const node of element.childNodes) {
+    if(node.nodeType!==3) continue;
+    const value=node.data.trim();
+    if(value&&han.test(value)&&value!=='中文') failures.push(`${label}: text "${value}"`);
+   }
+   for(const name of ['aria-label','title','placeholder','alt']) {
+    const value=element.getAttribute(name);
+    if(value&&han.test(value)&&value!=='中文') failures.push(`${label}: ${name}="${value}"`);
+   }
+  }
+ };
+ const wait=async()=>{await tick();await tick();};
+ await wait();
+ const initiallyHidden=[...w.document.querySelectorAll('.hidden')];
+ initiallyHidden.forEach(element=>element.classList.remove('hidden'));await wait();inspect('all-static-shell-markup');
+ initiallyHidden.forEach(element=>element.classList.add('hidden'));await wait();inspect('library');
+ for(const view of ['development','settings','icons','support']) {
+  await H.navigation.showView(view,false);await wait();inspect(view);
+  if(view==='settings') {
+   for(const tab of ['interface','tts','speech','system']) {
+    $(`[data-settings-tab="${tab}"]`).click();await wait();inspect(`settings/${tab}`);
+    if(tab==='system') {
+     $('#openAutoBackup').click();await wait();inspect('settings/auto-backup');
+     assert.equal($('#autoBackupPanel .auto-backup-chosen').textContent,'Current folder: Not selected');
+     $('#autoBackupKeepCountPick').click();await wait();inspect('settings/retention-choices');
+     await H.ui.requestClose('#autoBackupKeepCountPanel');
+     const base={...autoBackupConfig,enabled:true,hasDirectory:true,directoryName:'Backups',nextRunAt:1758520000000,batteryPercent:15,minBatteryPercent:20};
+     for(const [name,state] of [
+      ['scheduled-state',base],
+      ['successful-state',{...base,lastStatus:'success',lastRunAt:1758510000000,lastBytes:1536}],
+      ['skipped-state',{...base,lastStatus:'skipped',lastMessage:'数据没有变化，已跳过本次备份'}],
+      ['failed-state',{...base,lastStatus:'failed',needsPermission:true,lastMessage:'备份目录授权已失效，请重新选择目录'}],
+      ['alarm-limited-state',{...base,exactAlarmAvailable:false}]
+     ]) {
+      autoState=state;$('#openAutoBackup').click();await wait();inspect(`settings/auto-backup/${name}`);
+      if(name==='successful-state') {
+       $('#autoBackupRunNow').click();await wait();inspect('settings/auto-backup/run-now-result');
+       runNowResult={outcome:'failed',message:'请先选择备份目录'};$('#autoBackupRunNow').click();await wait();inspect('settings/auto-backup/run-now-error');
+       assert.equal($('#noticeText').textContent,'Choose a backup folder first.');runNowResult={outcome:'completed',removed:2};
+      }
+      await H.ui.requestClose('#autoBackupPanel');
+     }
+     $('#openBackupActions').click();await wait();inspect('settings/manual-backup');
+     await H.ui.requestClose('#backupActionsPanel');
+     $('#restoreBackupSettings').click();await wait();inspect('settings/restore-result');
+     await H.ui.requestClose('#backupRestoreResultPanel');
+     $('#diagnosticsButton').click();await wait();inspect('settings/diagnostics');
+     await H.ui.requestClose('#diagnosticsPanel');
+     $('#licensesButton').click();await wait();inspect('settings/licenses');
+     await H.ui.requestClose('#licensesPanel');
+    }
+   }
+  }
+ }
+ $('#addUrl').click();await wait();inspect('install');
+ $('#url').value='https://example.com';$('#confirmAdd').click();await wait();
+ inspect('install/resolved-url');assert.equal($('#name').value,'Online app');await H.ui.requestClose('#addPanel');
+ $('#addZip').click();await wait();inspect('install/zip');assert.equal($('#name').value,'Local app');await H.ui.requestClose('#addPanel');
+ await H.features.manage.openManage(auditApp);await wait();inspect('manage');await H.ui.requestClose('#managePanel');
+ await H.features.share.openOutbound(auditApp);await wait();inspect('share');await H.ui.requestClose('#sharePanel');
+ H.features.share.openInbound({shareId:'incoming-1',name:'Notes',bytes:2048,versionCode:3,device:'Another device',snapshot:'stable',signed:true});
+ await wait();inspect('shared-install');
+ H.i18n.setPreference('zh-CN');await wait();
+ assert.equal($('#shareInstallTitle').textContent,'确认安装 happ');
+ H.i18n.setPreference('en');await wait();inspect('language-toggle-roundtrip');
+ assert.deepEqual(failures,[]);
+});
 test('HaminnUI uses an exact theme-colored vector mask without raster inversion',async()=>{
  const {$}=setup();await tick();
  assert.ok($('#homeBrand .brand-mark .theme-logo'));
@@ -164,7 +249,7 @@ test('online HaminnUI exposes the local recovery action',async()=>{
  await tick();await H.navigation.showView('settings');await tick();
  assert.equal($('#useLocalShell').classList.contains('hidden'),false);
  assert.equal($('#shellUpdateTitle').textContent,'更新（实时在线）');
- assert.equal($('#shellVersionSwitch').textContent,'当前版本：APK 1.8.0 · UI 1.12.5');
+ assert.equal($('#shellVersionSwitch').textContent,'当前版本：APK 1.8.0 · UI 1.12.6');
  $('#useLocalShell').click();await tick();
  assert.ok(calls.some(call=>call.method==='host.shell.setMode'&&call.params.mode==='local'));
 });
