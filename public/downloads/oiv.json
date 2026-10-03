@@ -1,21 +1,21 @@
 {
   "schema": 1,
   "distribution": "Official Integrated Version",
-  "versionName": "1.12.15",
-  "versionCode": 97,
+  "versionName": "1.12.16",
+  "versionCode": 98,
   "applicationId": "life.airen.haminn",
-  "file": "haminn-v1.12.15-oiv-release.apk",
-  "bytes": 5306783,
-  "sha256": "6f999e3ebf5a0f4c82918226389d30f747ff127405bb47d963ba01faf91192a7",
-  "sourceCommit": "e094f6f2e937887a8bdf6f0a3750e3132a7c730c",
+  "file": "haminn-v1.12.16-oiv-release.apk",
+  "bytes": 5311176,
+  "sha256": "7ca30264497275f72adb5a30720fdaac6c0d9a33e3a91a44433501c5e8f41732",
+  "sourceCommit": "2b4c644a01c92523dc81025fa6dee58e7ffe65c6",
   "apps": [
     {
       "happId": "life.airen.chataxi",
       "name": "Chataxi",
       "package": "happs/life.airen.chataxi.zip",
-      "sha256": "2bac6f073155e1b0c19821d7e2f0711cd00861779490c54c7908cd9af321d258",
-      "versionCode": 132,
-      "versionName": "0.7.53-web.1"
+      "sha256": "1b63bb2d41a5f907cd4032e6bc42ff88d5ef783dd995e30a84836894ee58043d",
+      "versionCode": 134,
+      "versionName": "0.7.55-web.1"
     },
     {
       "happId": "life.airen.posegi",
